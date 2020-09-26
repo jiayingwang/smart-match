@@ -4,16 +4,16 @@ The smart-match module contains functions for functions for calculating string s
 
 ## Concept
 
-1. $similarity$
+1. similarity
 A value in a range of [0, 1], which represents how similar the two strings are. 
 The larger the value, the more similar the two strings are.
 
-2. $dissimilarity$
+2. dissimilarity
 A value in a range of [0, 1], which represents how dissimilar the two strings are. 
 The larger the value, the more dissimilar the two strings are.
-For a pair of strings, $similarity = 1 - dissimilarity$
+For a pair of strings, similarity = 1 - dissimilarity
 
-3. $distance$
+3. distance
 How far the two strings are. Notice that not all the methods support distance method.
 
 ## Methods
@@ -25,6 +25,7 @@ DL  | Damerau Levenshtein |     Yes   |    Yes        |  Yes
 BD  |    Block Distance   |     Yes   |    Yes        |  Yes
 cos  | Cosine Similarity |     Yes   |    Yes        |  No
 dice | Dice Similarity |     Yes   |    Yes        |  No
+MK   | MongeElkan  |  Yes | Yes | No
 
 
 # Installation
@@ -77,7 +78,7 @@ Output:
 __cos(Cosine Similarity)__:  It measures the cosine of the angle between two strings projected in a multi-dimensional space.
 Mathematically 
 
-<img src="https://render.githubusercontent.com/render/math?math=cos(X, Y) = \frac{X \cdot Y}{\|X\| \|Y\|}" style="margin: 0 auto;">
+<img src="https://render.githubusercontent.com/render/math?math=cos(X, Y) = \frac{X \cdot Y}{\|X\| \|Y\|}">
 
 ```python
 smart_match.use('cos')
@@ -91,7 +92,7 @@ Output:
 __dice(Dice Similarity)__:  It is intended to be applied to discrete data, so the frequencies of characters will be ignored. 
 Mathematically
 
-<img src="https://render.githubusercontent.com/render/math?math=dice(X, Y) = \frac{2|X \cap Y|}{|X|%2B|Y|}" style="margin: 0 auto;">
+<img src="https://render.githubusercontent.com/render/math?math=dice(X, Y) = \frac{2|X \cap Y|}{|X|%2B|Y|}">
 
 ```python
 smart_match.use('dice')
@@ -100,6 +101,22 @@ print(smart_match.similarity('hello', 'hero'))
 Output:
 ```shell
 0.75
+```
+
+__ME(MongeElkan)__: The Monge-Elkan similarity measure is a type of hybrid similarity measure that combines the benefits of sequence-based and set-based methods. It uses the other similarity method as inner method to consider similarity for each string pair in two string collections.
+
+<img src="https://render.githubusercontent.com/render/math?math=dice(X, Y) = \frac{2|X \cap Y|}{|X|%2B|Y|}">
+
+```python
+smart_match.use('ME')
+print(smart_match.similarity(['Hello', 'world'], ['Hero', 'world']))
+smart_match.use('ME', 'cos')
+print(smart_match.similarity(['Hello', 'world'], ['Hero', 'world']))
+```
+Output:
+```shell
+0.8
+0.7834733547569204
 ```
 
 # License
