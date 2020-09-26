@@ -2,6 +2,30 @@
 
 The smart-match module contains functions for functions for calculating string similarity.
 
+## Concept
+
+1. $similarity$
+A value in a range of [0, 1], which represents how similar the two strings are. 
+The larger the value, the more similar the two strings are.
+
+2. $dissimilarity$
+A value in a range of [0, 1], which represents how dissimilar the two strings are. 
+The larger the value, the more dissimilar the two strings are.
+For a pair of strings, $similarity = 1 - dissimilarity$
+
+3. $distance$
+How far the two strings are. Notice that not all the methods support distance method.
+
+## Methods
+
+Abbreviation | full name | Similarity | Dissimilarity | Distance
+-------------|-----------|------------|---------------|---------
+ED(Default) | Levenshtein |     Yes   |    Yes        |  Yes
+DL  | Damerau Levenshtein |     Yes   |    Yes        |  Yes
+BD  |    Block Distance   |     Yes   |    Yes        |  Yes
+COS  | Cosine Similarity |     Yes   |    Yes        |  No
+
+
 # Installation
 
 ```shell
@@ -9,6 +33,8 @@ pip install smart-match
 ```
 
 # Usage
+
+- Default method ED(Levenshtein): It also called edit distance, which is the minimum number of single-character edits (insertions, deletions or substitutions) required to change one word into the other
 
 ```python
 import smart_match
@@ -23,9 +49,9 @@ Output:
 2
 ```
 
-change to the other methods:
+- change to the other methods:
 
-DL(Damerau Levenshtein): the cost of transposition of two adjacent characters is 1. 
+__DL(Damerau Levenshtein)__: It consider the cost of transposition of two adjacent characters to be 1. 
 
 ```python
 smart_match.use('DL')
@@ -36,7 +62,7 @@ Output:
 1
 ```
 
-BD(Block Distance): focus on the differences in the alphabet without considering the order.
+__BD(Block Distance)__: It focuses on the differences in the alphabet without considering the order.
 
 ```python
 smart_match.use('BD')
@@ -45,6 +71,17 @@ print(smart_match.distance('hello', 'ehllo'))
 Output:
 ```shell
 0
+```
+
+__COS(Cosine Similarity)__:  It measures the cosine of the angle between two strings projected in a multi-dimensional space.
+
+```python
+smart_match.use('COS')
+print(smart_match.similarity('hello', 'hero'))
+```
+Output:
+```shell
+0.5669467095138409
 ```
 
 # License

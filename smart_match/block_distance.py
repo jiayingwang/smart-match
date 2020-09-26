@@ -19,3 +19,6 @@ class BlockDistance:
         for x in s_freq:
             total += abs(s_freq[x])
         return total
+    
+    def __repr__(self):
+        return 'BlockDistance'
