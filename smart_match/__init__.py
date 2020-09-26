@@ -1,5 +1,6 @@
 from .damerau_levenshtein import *
 from .levenshtein import *
+from .block_distance import *
 
 _method = Levenshtein()
 
@@ -13,6 +14,10 @@ def use(mode='ED', verbose=False):
         if verbose:
             print('mode change to DamerauLevenshtein')
         _method = DamerauLevenshtein()
+    elif mode == 'BD':
+        if verbose:
+            print('mode change to BlockDistance')
+        _method = BlockDistance()
     else:
         raise NotImplementedError
 
