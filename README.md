@@ -75,7 +75,9 @@ Output:
 ```
 
 __cos(Cosine Similarity)__:  It measures the cosine of the angle between two strings projected in a multi-dimensional space.
-Mathematically $$cos(X, Y) = \frac{X \cdot Y}{\|X\| \|Y\|}$$
+Mathematically 
+
+<img src="https://render.githubusercontent.com/render/math?math=cos(X, Y) = \frac{X \cdot Y}{\|X\| \|Y\|}" style="margin: 0 auto;">
 
 ```python
 smart_match.use('cos')
@@ -87,7 +89,9 @@ Output:
 ```
 
 __dice(Dice Similarity)__:  It is intended to be applied to discrete data, so the frequencies of characters will be ignored. 
-Mathematically $$dice(X, Y) = \frac{2|X \cap Y|}{|X|+|Y|}$$
+Mathematically
+
+<img src="https://render.githubusercontent.com/render/math?math=dice(X, Y) = \frac{2|X \cap Y|}{|X|%2B|Y|}" style="margin: 0 auto;">
 
 ```python
 smart_match.use('dice')
