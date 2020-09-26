@@ -2,6 +2,7 @@ from .damerau_levenshtein import *
 from .levenshtein import *
 from .block_distance import *
 from .cosine_similarity import *
+from .dice_similarity import *
 
 _method = Levenshtein()
 
@@ -19,10 +20,14 @@ def use(mode='ED', verbose=False):
         if verbose:
             print('mode change to BlockDistance')
         _method = BlockDistance()
-    elif mode == 'COS':
+    elif mode == 'cos':
         if verbose:
             print('mode change to CosineSimilarity')
         _method = CosineSimilarity()
+    elif mode == 'dice':
+        if verbose:
+            print('mode change to DiceSimilarity')
+        _method = DiceSimilarity()
     else:
         raise NotImplementedError
 

@@ -18,12 +18,13 @@ How far the two strings are. Notice that not all the methods support distance me
 
 ## Methods
 
-Abbreviation | full name | Similarity | Dissimilarity | Distance
+Abbreviation | Full name | similarity | dissimilarity | distance
 -------------|-----------|------------|---------------|---------
 ED(Default) | Levenshtein |     Yes   |    Yes        |  Yes
 DL  | Damerau Levenshtein |     Yes   |    Yes        |  Yes
 BD  |    Block Distance   |     Yes   |    Yes        |  Yes
-COS  | Cosine Similarity |     Yes   |    Yes        |  No
+cos  | Cosine Similarity |     Yes   |    Yes        |  No
+dice | Dice Similarity |     Yes   |    Yes        |  No
 
 
 # Installation
@@ -73,15 +74,28 @@ Output:
 0
 ```
 
-__COS(Cosine Similarity)__:  It measures the cosine of the angle between two strings projected in a multi-dimensional space.
+__cos(Cosine Similarity)__:  It measures the cosine of the angle between two strings projected in a multi-dimensional space.
+Mathematically $$cos(X, Y) = \frac{X \cdot Y}{\|X\| \|Y\|}$$
 
 ```python
-smart_match.use('COS')
+smart_match.use('cos')
 print(smart_match.similarity('hello', 'hero'))
 ```
 Output:
 ```shell
 0.5669467095138409
+```
+
+__dice(Dice Similarity)__:  It is intended to be applied to discrete data, so the frequencies of characters will be ignored. 
+Mathematically $$dice(X, Y) = \frac{2|X \cap Y|}{|X|+|Y|}$$
+
+```python
+smart_match.use('dice')
+print(smart_match.similarity('hello', 'hero'))
+```
+Output:
+```shell
+0.75
 ```
 
 # License

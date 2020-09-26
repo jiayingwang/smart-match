@@ -4,7 +4,7 @@ import smart_match
 class TestCosineSimilarity(unittest.TestCase):
     
     def setUp(self):
-        smart_match.use('COS')
+        smart_match.use('cos')
 
     def test_similarity(self):
         self.assertAlmostEqual(smart_match.similarity('hello', 'hero'), 0.5669467095138409)
