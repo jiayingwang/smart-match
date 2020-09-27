@@ -4,6 +4,8 @@ from .block_distance import *
 from .cosine_similarity import *
 from .dice_similarity import *
 from .monge_elkan import *
+from .jaccard import *
+from .generalized_jaccard import *
 
 _method = Levenshtein()
 
@@ -30,6 +32,14 @@ def get_method(name=None, inner_method=None, verbose=False):
         if verbose:
             print('mode change to DiceSimilarity')
         return DiceSimilarity()
+    elif name == 'jac':
+        if verbose:
+            print('mode change to Jaccard')
+        return Jaccard()
+    elif name == 'gjac':
+        if verbose:
+            print('mode change to GeneralizedJaccard')
+        return GeneralizedJaccard()
     elif name == 'ME':
         if verbose:
             print('mode change to MongeElkan')

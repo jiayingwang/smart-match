@@ -26,6 +26,8 @@ BD  |    Block Distance   |     Yes   |    Yes        |  Yes
 cos  | Cosine Similarity |     Yes   |    Yes        |  No
 dice | Dice Similarity |     Yes   |    Yes        |  No
 MK   | MongeElkan  |  Yes | Yes | No
+jac  | Jaccard     |  Yes | Yes | No
+gjac | GeneralizedJaccard | Yes | Yes | No
 
 
 # Installation
@@ -89,7 +91,7 @@ Output:
 0.5669467095138409
 ```
 
-__dice(Dice Similarity)__:  It is intended to be applied to discrete data, so the frequencies of characters will be ignored. 
+__dice(Dice Similarity)__:  It is intended to be applied to discrete data, so the occurrence of an entry will be ignored. 
 Mathematically
 
 <img src="https://render.githubusercontent.com/render/math?math=dice(X, Y) = \frac{2|X \cap Y|}{|X|%2B|Y|}">
@@ -105,8 +107,6 @@ Output:
 
 __ME(MongeElkan)__: The Monge-Elkan similarity measure is a type of hybrid similarity measure that combines the benefits of sequence-based and set-based methods. It uses the other similarity method as inner method to consider similarity for each string pair in two string collections.
 
-<img src="https://render.githubusercontent.com/render/math?math=dice(X, Y) = \frac{2|X \cap Y|}{|X|%2B|Y|}">
-
 ```python
 smart_match.use('ME')
 print(smart_match.similarity(['Hello', 'world'], ['Hero', 'world']))
@@ -118,9 +118,45 @@ Output:
 0.8
 0.7834733547569204
 ```
+__jac(Jaccard)__: The Jacquard coefficient  is defined as the ratio between the intersection size and the union size of two strings/sets.
+Mathematically
+
+<img src="https://render.githubusercontent.com/render/math?math=jaccard(X, Y) = \frac{|X \cap Y|}{|X| \cup |Y|}">
+
+```python
+smart_match.use('jac')
+print(smart_match.similarity('hello', 'helo'))
+print(smart_match.similarity('hello', 'hero'))
+print(jaccard.similarity('hello world', 'hello world hello world'))
+```
+Output:
+```shell
+1
+0.6
+1.0
+```
+
+__gjac(GeneralizedJaccard)__: The Jacquard coefficient  is defined as the ratio between the intersection size and the union size of two strings/sets. Different from Jacquard method, the occurrence of an entry is taken into account.
+
+```python
+smart_match.use('gjac')
+print(smart_match.similarity('hello', 'helo'))
+print(smart_match.similarity('hello', 'hero'))
+print(jaccard.similarity('hello world', 'hello world hello world'))
+```
+Output:
+```shell
+0.8
+0.5
+0.4782608695652174
+```
 
 # License
 
-smart-match is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+smart-match is free software. See the file LICENSE for the full text.
 
-See the file COPYING for the full text of GNU General Public License version 2.
+# Authors
+
+- Jiaying Wang (jiaying@sjzu.edu.cn)
+- Jing Shan (shanjing@sjzu.edu.cn)
+- Kaiwei Li
