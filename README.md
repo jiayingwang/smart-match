@@ -153,7 +153,7 @@ Output:
 
 # License
 
-smart-match is free software. See the file LICENSE for the full text.
+smart-match is a free software. See the file LICENSE for the full text.
 
 # Authors
 
