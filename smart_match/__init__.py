@@ -5,6 +5,7 @@ from .cosine_similarity import *
 from .dice_similarity import *
 from .monge_elkan import *
 from .jaccard import *
+from .hamming_distance import *
 from .generalized_jaccard import *
 
 _method = Levenshtein()
@@ -40,6 +41,10 @@ def get_method(name=None, inner_method=None, verbose=False):
         if verbose:
             print('mode change to GeneralizedJaccard')
         return GeneralizedJaccard()
+    elif name=='Ham':
+        if verbose:
+            print('mode change to HammingDistance')
+        return HammingDistance()
     elif name == 'ME':
         if verbose:
             print('mode change to MongeElkan')
