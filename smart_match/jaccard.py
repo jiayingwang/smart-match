@@ -1,5 +1,3 @@
-from collections import Counter
-
 class Jaccard:
         
     def similarity(self, s, t):

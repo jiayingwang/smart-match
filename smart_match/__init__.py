@@ -7,6 +7,8 @@ from .monge_elkan import *
 from .jaccard import *
 from .hamming_distance import *
 from .generalized_jaccard import *
+from .jaro import *
+from .jarowinkler import *
 
 _method = Levenshtein()
 
@@ -41,10 +43,18 @@ def get_method(name=None, inner_method=None, verbose=False):
         if verbose:
             print('mode change to GeneralizedJaccard')
         return GeneralizedJaccard()
-    elif name=='Ham':
+    elif name=='HD':
         if verbose:
             print('mode change to HammingDistance')
         return HammingDistance()
+    elif name=='jaro':
+        if verbose:
+            print('mode change to Jaro')
+        return Jaro()
+    elif name=='JW':
+        if verbose:
+            print('mode change to JaroWinkler')
+        return JaroWinkler()
     elif name == 'ME':
         if verbose:
             print('mode change to MongeElkan')

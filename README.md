@@ -105,19 +105,6 @@ Output:
 0.75
 ```
 
-__ME(MongeElkan)__: The Monge-Elkan similarity measure is a type of hybrid similarity measure that combines the benefits of sequence-based and set-based methods. It uses the other similarity method as inner method to consider similarity for each string pair in two string collections.
-
-```python
-smart_match.use('ME')
-print(smart_match.similarity(['Hello', 'world'], ['Hero', 'world']))
-smart_match.use('ME', 'cos')
-print(smart_match.similarity(['Hello', 'world'], ['Hero', 'world']))
-```
-Output:
-```shell
-0.8
-0.7834733547569204
-```
 __jac(Jaccard)__: The Jacquard coefficient  is defined as the ratio between the intersection size and the union size of two strings/sets.
 Mathematically
 
@@ -151,6 +138,61 @@ Output:
 0.4782608695652174
 ```
 
+__HD(HammingDistance)__: Hamming distance is the number of different characters in the corresponding positions of two strings. The two strings must be the same length.
+
+```python
+smart_match.use('HD')
+print(smart_match.similarity('12211','11111'))
+```
+Output:
+```shell
+2
+```
+
+__jaro(Jaro Similarity)__: The Jaro Similarity of two given strings is 
+
+<img src="https://render.githubusercontent.com/render/math?math=sim(x%2C%20y)%3D%5Cbegin%7Bcases%7D%0A0%20%26%20%5Ctext%7Bif%20m%20%3D%200%7D%5C%5C%0A%5Cfrac%7B1%7D%7B3%7D(%5Cfrac%7Bm%7D%7B%7Cx%7C%7D%20%2B%20%5Cfrac%7Bm%7D%7B%7Cy%7C%7D%20%2B%20%5Cfrac%7Bm-t%7D%7Bm%7D)%20%26%20%5Ctext%7Botherwise%7D%0A%5Cend%7Bcases%7D">
+
+in which |x| represent the length of string x, m is the number of matching characters, t is half the number of transpositions. 
+
+```python
+smart_match.use('jaro')
+print(smart_match.similarity('CRATE','TRACE'))
+```
+Output:
+```shell
+0.7333333333333334
+```
+
+__JW(JaroWinkler Similarity)__: The JaroWinkler Similarity uses a prefix scale p which gives more favorable ratings to strings that match from the beginning for exact matching prefix l.
+Mathematically
+
+<img src="https://render.githubusercontent.com/render/math?math=JD(x%2C%20y)%20%3D%20jaro(x%2C%20y)%20%2B%20lp(1-jaro(x%2C%20y))">
+
+```python
+smart_match.use('JW')
+print(smart_match.similarity('TRATE', 'TRACE'))
+```
+Output:
+```shell
+0.9066666666666667
+```
+
+
+__ME(MongeElkan)__: The Monge-Elkan similarity measure is a type of hybrid similarity measure that combines the benefits of sequence-based and set-based methods. It uses the other similarity method as inner method to consider similarity for each string pair in two string collections.
+
+```python
+smart_match.use('ME')
+print(smart_match.similarity(['Hello', 'world'], ['Hero', 'world']))
+smart_match.use('ME', 'cos')
+print(smart_match.similarity(['Hello', 'world'], ['Hero', 'world']))
+```
+Output:
+```shell
+0.8
+0.7834733547569204
+```
+
 # License
 
 smart-match is a free software. See the file LICENSE for the full text.
@@ -160,3 +202,5 @@ smart-match is a free software. See the file LICENSE for the full text.
 - Jiaying Wang (jiaying@sjzu.edu.cn)
 - Jing Shan (shanjing@sjzu.edu.cn)
 - Kaiwei Li
+- Xiuzi Zhang
+- YuQiang Feng
