@@ -8,11 +8,12 @@ from .jaccard import *
 from .hamming_distance import *
 from .generalized_jaccard import *
 from .jaro import *
-from .jarowinkler import *
+from .jaro_winkler import *
+from .smith_waterman_gotoh import *
 
 _method = Levenshtein()
 
-def get_method(name=None, inner_method=None, verbose=False):
+def get_method(name=None, verbose=False):
     if not name:
         name = 'ED'
     if name == 'ED':
@@ -43,29 +44,35 @@ def get_method(name=None, inner_method=None, verbose=False):
         if verbose:
             print('mode change to GeneralizedJaccard')
         return GeneralizedJaccard()
-    elif name=='HD':
+    elif name == 'HD':
         if verbose:
             print('mode change to HammingDistance')
         return HammingDistance()
-    elif name=='jaro':
+    elif name == 'jaro':
         if verbose:
             print('mode change to Jaro')
         return Jaro()
-    elif name=='JW':
+    elif name == 'JW':
         if verbose:
             print('mode change to JaroWinkler')
         return JaroWinkler()
+    elif name == 'SWG':
+        if verbose:
+            print('mode change to SmithWatermanGotoh')
+        return SmithWatermanGotoh()
     elif name == 'ME':
         if verbose:
             print('mode change to MongeElkan')
-        return MongeElkan(inner_method)
+        return MongeElkan()
     else:
         raise NotImplementedError
-    
 
-def use(name=None, inner_method=None, verbose=False):
+def set_params(*args, **kwargs):
+    _method.set_params(*args, **kwargs )
+
+def use(name=None, verbose=False):
     global _method
-    _method = get_method(name, inner_method, verbose)
+    _method = get_method(name, verbose)
 
 def similarity(s, t):
     global _method

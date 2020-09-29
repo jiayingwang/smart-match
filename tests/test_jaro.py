@@ -7,14 +7,8 @@ class TestJaro(unittest.TestCase):
         
     def test_jaro_similarity1(self):
         self.assertAlmostEqual(smart_match.similarity('ABC','CBA'), 0.5555555555555555)
-        
-    def test_jaro_similarity2(self):
         self.assertAlmostEqual(smart_match.similarity('CRATE','TRACE'), 0.7333333333333334)
-        
-    def test_jaro_similarity3(self):
         self.assertAlmostEqual(smart_match.similarity('CRATE','TRACE'), 0.7333333333333334)
-        
-    def test_jaro_similarity4(self):
         self.assertAlmostEqual(smart_match.similarity('AABABCAAAC', 'ABAACBAAAC'), 0.9333333333333332)
         
 if __name__=='__main__':

@@ -8,11 +8,7 @@ class TestJaccard(unittest.TestCase):
 
     def test_similarity(self):
         self.assertAlmostEqual(smart_match.similarity('hello', 'helo'), 1)
-        
-    def test_similarity2(self):
         self.assertAlmostEqual(smart_match.similarity('hello', 'hero'), 0.6)
-    
-    def test_similarity3(self):
         self.assertAlmostEqual(smart_match.similarity('hello world', 'hello world hello world'), 1)
 
     def test_dissimilarity(self):
