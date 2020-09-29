@@ -18,16 +18,20 @@ How far the two strings are. Notice that not all the methods support distance me
 
 ## Methods
 
-Abbreviation | Full name | similarity | dissimilarity | distance
--------------|-----------|------------|---------------|---------
-ED(Default) | Levenshtein |     Yes   |    Yes        |  Yes
-DL  | Damerau Levenshtein |     Yes   |    Yes        |  Yes
-BD  |    Block Distance   |     Yes   |    Yes        |  Yes
-cos  | Cosine Similarity |     Yes   |    Yes        |  No
-dice | Dice Similarity |     Yes   |    Yes        |  No
-MK   | MongeElkan  |  Yes | Yes | No
-jac  | Jaccard     |  Yes | Yes | No
-gjac | GeneralizedJaccard | Yes | Yes | No
+Abbreviation | Full name | similarity | dissimilarity | distance | score
+-------------|-----------|------------|---------------|----------|------
+ED(Default) | Levenshtein |     Yes   |    Yes        |  Yes  | No
+DL  | Damerau Levenshtein |     Yes   |    Yes        |  Yes  | No
+BD  |    Block Distance   |     Yes   |    Yes        |  Yes  | No
+cos  | Cosine Similarity |     Yes   |    Yes        |  No | No
+dice | Dice Similarity |     Yes   |    Yes        |  No | No
+jac  | Jaccard     |  Yes | Yes | No | No
+gjac | GeneralizedJaccard | Yes | Yes | No | No
+HD | HammingDistance | Yes | Yes | Yes | No
+jaro | Jaro | Yes | Yes | No | No
+JW | JaroWinkler | Yes | Yes | No | No
+SWG | SmithWatermanGotoh | Yes | Yes | No | Yes
+MK   | MongeElkan  |  Yes | Yes | No | No
 
 
 # Installation
@@ -178,6 +182,24 @@ Output:
 0.9066666666666667
 ```
 
+__SWG(SmithWatermanGotoh)__: Applies the Smith-Waterman algorithm to calculate the similarity between two strings. This implementation uses optimizations proposed by Osamu Gotoh.
+Mathematically
+
+<img src="https://render.githubusercontent.com/render/math?math=%24score_%7Bi%2C%20j%7D%20%3D%20%5Cmax%20%5Cbegin%7Bcases%7D%0A0%20%5C%5C%0Ascore_%7Bi-1%2C%20j-1%7D%20%2B%20substitute(s_i%2C%20t_j)%20%5C%5C%0Ascore_%7Bi-1%2C%20j%7D%20%2B%20gap%20%5C%5C%0Ascore_%7Bi%2C%20j-1%7D%20%2B%20gap%20%5C%5C%0A%5Cend%7Bcases%7D%24">
+
+in which 
+
+<img src="https://render.githubusercontent.com/render/math?math=substitute(s_i%2C%20t_j)%20%3D%20%5Cbegin%7Bcases%7D%0Amatch%20%26%20%5Ctext%7Bif%20%7D%20s_i%20%3D%20t_j%20%5C%5C%0Amismatch%20%26%20%5Ctext%7Botherwise%7D%0A%5Cend%7Bcases%7D">
+
+```python
+smart_match.use('SWG')
+print(smart_match.similarity('GGTTGACTA', 'TGTTACGG'))
+```
+Output:
+```shell
+0.3125
+```
+
 
 __ME(MongeElkan)__: The Monge-Elkan similarity measure is a type of hybrid similarity measure that combines the benefits of sequence-based and set-based methods. It uses the other similarity method as inner method to consider similarity for each string pair in two string collections.
 
@@ -204,3 +226,4 @@ smart-match is a free software. See the file LICENSE for the full text.
 - Kaiwei Li
 - Xiuzi Zhang
 - YuQiang Feng
+- XianFeng Du
