@@ -1,5 +1,7 @@
 from .damerau_levenshtein import *
 from .levenshtein import *
+from .overlapcoefficient import *
+from .generalizedoverlapcoefficient import *
 
 _method = Levenshtein()
 
@@ -13,6 +15,13 @@ def use(mode='ED', verbose=False):
         if verbose:
             print('mode change to DamerauLevenshtein')
         _method = DamerauLevenshtein()
+        
+    elif mode == "OC":
+        _method = OverlapCoefficient()
+
+    elif mode == "GOC":
+        _method = GeOverlapCoefficient()
+        
     else:
         raise NotImplementedError
 
