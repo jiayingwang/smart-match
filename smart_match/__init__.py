@@ -10,6 +10,7 @@ from .generalized_jaccard import *
 from .jaro import *
 from .jaro_winkler import *
 from .smith_waterman_gotoh import *
+from .simon_white import *
 
 _method = Levenshtein()
 
@@ -56,6 +57,10 @@ def get_method(name=None, verbose=False):
         if verbose:
             print('mode change to JaroWinkler')
         return JaroWinkler()
+    elif name == 'simon':
+        if verbose:
+            print('mode change to SimonWhite')
+        return SimonWhite()
     elif name == 'SWG':
         if verbose:
             print('mode change to SmithWatermanGotoh')

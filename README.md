@@ -25,6 +25,7 @@ DL  | Damerau Levenshtein |     Yes   |    Yes        |  Yes  | No
 BD  |    Block Distance   |     Yes   |    Yes        |  Yes  | No
 cos  | Cosine Similarity |     Yes   |    Yes        |  No | No
 dice | Dice Similarity |     Yes   |    Yes        |  No | No
+simon | SimonWhite | Yes | Yes | No | No
 jac  | Jaccard     |  Yes | Yes | No | No
 gjac | GeneralizedJaccard | Yes | Yes | No | No
 HD | HammingDistance | Yes | Yes | Yes | No
@@ -95,7 +96,7 @@ Output:
 0.5669467095138409
 ```
 
-__dice(Dice Similarity)__:  It is intended to be applied to discrete data, so the occurrence of an entry will be ignored. 
+__dice(Dice Similarity)__:  The similarity between two strings s1 and s2 is twice the number of character pairs that are common to both strings divided by the sum of the number of character pairs in the two strings. It is intended to be applied to discrete data, so the occurrence of an entry will be ignored. 
 Mathematically
 
 <img src="https://render.githubusercontent.com/render/math?math=dice(X, Y) = \frac{2|X \cap Y|}{|X|%2B|Y|}">
@@ -107,6 +108,17 @@ print(smart_match.similarity('hello', 'hero'))
 Output:
 ```shell
 0.75
+```
+
+__simon(Simon White)__:  The similarity between two strings s1 and s2 is twice the number of character pairs that are common to both strings divided by the sum of the number of character pairs in the two strings. The occurrence of an entry will be taken into consideration.
+
+```python
+smart_match.use('simon')
+print(smart_match.similarity('hello', 'hollow'))
+```
+Output:
+```shell
+0.7272727272727273
 ```
 
 __jac(Jaccard)__: The Jacquard coefficient  is defined as the ratio between the intersection size and the union size of two strings/sets.
@@ -227,3 +239,4 @@ smart-match is a free software. See the file LICENSE for the full text.
 - Xiuzi Zhang
 - YuQiang Feng
 - XianFeng Du
+- Zifan Guo

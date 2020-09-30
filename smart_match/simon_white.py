@@ -1,6 +1,5 @@
 from collections import Counter
 
-
 class SimonWhite:
 
     def similarity(self, a, b):
