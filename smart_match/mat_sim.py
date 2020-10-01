@@ -37,3 +37,27 @@ class MatSim:
                 row1, row2 = row2, row1
             
         return row1[len(t)]
+    
+    def dp_local(self, s, t):
+        if not s:
+            return len(t) * self.gap
+        if not t:
+            return len(s) * self.gap
+        if s == t:
+            return len(s) * self.match
+        
+        row1 = [0]*(len(t)+1)
+        row2 = [0]*(len(t)+1)
+        
+        for i in range(len(t)+1):
+            row1[i] = 0
+            
+        for i in range(len(s)):
+            row2[0] = 0
+            for j in range(len(t)):
+                row2[j+1] = self.opt(0, row2[j] + self.gap,
+                                    row1[j+1] + self.gap,
+                                    row1[j] + (self.match if s[i] == t[j] else self.mismatch))
+            row1, row2 = row2, row1
+            
+        return row1[len(t)]
