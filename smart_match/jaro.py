@@ -2,10 +2,10 @@ class Jaro:
     
     def similarity(self, s, t):
         if not s and not t:
-            return 1
+            return 1.0
         
         if not s or not t:
-            return 0
+            return 0.0
         
         if len(s) > len(t):
             s, t = t, s

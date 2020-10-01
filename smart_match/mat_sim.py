@@ -61,3 +61,20 @@ class MatSim:
             row1, row2 = row2, row1
             
         return row1[len(t)]
+    
+    def lcs(self, s, t):        
+        row1 = [0]*(len(t)+1)
+        row2 = [0]*(len(t)+1)
+        
+        max_len = 0
+            
+        for i in range(len(s)):
+            row2[0] = 0
+            for j in range(len(t)):
+                if s[i] == t[j]:
+                    row2[j+1] = row1[j] + 1
+                    if row2[j+1] > max_len:
+                        max_len = row2[j+1]
+            row1, row2 = row2, [0]*(len(t)+1)
+            
+        return max_len

@@ -10,7 +10,7 @@ class Levenshtein(MatSim):
     
     def dissimilarity(self, s, t):
         if not s and not t:
-            return 0
+            return 0.0
         return self.distance(s, t) / max(len(s), len(t)) 
     
     def distance(self, s, t):

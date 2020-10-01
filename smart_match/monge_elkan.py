@@ -11,10 +11,10 @@ class MongeElkan:
     
     def similarity(self, X, Y):
         if not X and not Y:
-            return 1
+            return 1.0
         
         if not X or not Y:
-            return 0
+            return 0.0
 
         return sqrt(self.monge_elkan(X, Y) * self.monge_elkan(Y, X))
     

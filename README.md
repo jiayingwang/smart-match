@@ -20,19 +20,22 @@ How far the two strings are. Notice that not all the methods support distance me
 
 Abbreviation | Full name | similarity | dissimilarity | distance | score
 -------------|-----------|------------|---------------|----------|------
-ED(Default) | Levenshtein |     Yes   |    Yes        |  Yes  | No
-DL  | Damerau Levenshtein |     Yes   |    Yes        |  Yes  | No
-BD  |    Block Distance   |     Yes   |    Yes        |  Yes  | No
-cos  | Cosine Similarity |     Yes   |    Yes        |  No | No
-dice | Dice Similarity |     Yes   |    Yes        |  No | No
-simon | SimonWhite | Yes | Yes | No | No
-jac  | Jaccard     |  Yes | Yes | No | No
-gjac | GeneralizedJaccard | Yes | Yes | No | No
-HD | HammingDistance | Yes | Yes | Yes | No
-jaro | Jaro | Yes | Yes | No | No
-JW | JaroWinkler | Yes | Yes | No | No
-SWG | SmithWatermanGotoh | Yes | Yes | No | Yes
-MK   | MongeElkan  |  Yes | Yes | No | No
+ED(Default) | Levenshtein |     ✅   |    ✅        |  ✅  | ❌
+DL  | Damerau Levenshtein |     ✅   |    ✅        |  ✅  | ❌
+BD  |    Block Distance   |     ✅   |    ✅        |  ✅  | ❌
+cos  | Cosine Similarity |     ✅   |    ✅        |  ❌ | ❌
+dice | Dice Similarity |     ✅   |    ✅        |  ❌ | ❌
+simon | SimonWhite | ✅ | ✅ | ❌ | ❌
+LCS | LongestCommonSubstring | ✅ | ✅ | ✅ | ✅
+OC | OverlapCoefficient | ✅ | ✅ | ❌ | ❌
+GOC | GeneralizedOverlapCoefficient | ✅ | ✅ | ❌ | ❌
+jac  | Jaccard     |  ✅ | ✅ | ❌ | ❌
+gjac | GeneralizedJaccard | ✅ | ✅ | ❌ | ❌
+HD | HammingDistance | ✅ | ✅ | ✅ | ❌
+jaro | Jaro | ✅ | ✅ | ❌ | ❌
+JW | JaroWinkler | ✅ | ✅ | ❌ | ❌
+SWG | SmithWatermanGotoh | ✅ | ✅ | ❌ | ✅
+MK   | MongeElkan  |  ✅ | ✅ | ❌ | ❌
 
 
 # Installation
@@ -139,7 +142,7 @@ Output:
 1.0
 ```
 
-__gjac(GeneralizedJaccard)__: The Jacquard coefficient  is defined as the ratio between the intersection size and the union size of two strings/sets. Different from Jacquard method, the occurrence of an entry is taken into account.
+__gjac(GeneralizedJaccard)__: The Jacquard coefficient is defined as the ratio between the intersection size and the union size of two strings/sets. Different from Jacquard method, the occurrence of an entry is taken into account.
 
 ```python
 smart_match.use('gjac')
@@ -152,6 +155,42 @@ Output:
 0.8
 0.5
 0.4782608695652174
+```
+
+__OC(OverlapCoefficient)__: The Overlap coefficient is a similarity measure that measures the overlap between two finite strings/sets.
+Mathematically
+
+<img src="https://render.githubusercontent.com/render/math?math=overlap(X, Y) = \frac{|X \cap Y|}{\min(|X|, |Y|)}">
+
+```python
+smart_match.use('gjac')
+print(smart_match.similarity('hello', 'hero'))
+```
+Output:
+```shell
+0.75
+```
+
+__GOC(GeneralizedOverlapCoefficient)__: The Overlap coefficient is a similarity measure that measures the overlap between two finite strings/sets. Different from OverlapCoefficient method, the occurrence of an entry is taken into account.
+
+```python
+smart_match.use('GOC')
+print(smart_match.similarity('hello', 'hollow'))
+```
+Output:
+```shell
+0.8
+```
+
+__LCS(LongestCommonSubstring)__: The longest common substring is similarity based on finding longest string that is a substring of two strings.
+
+```python
+smart_match.use('LCS')
+print(smart_match.similarity('hello', 'low'))
+```
+Output:
+```shell
+0.4
 ```
 
 __HD(HammingDistance)__: Hamming distance is the number of different characters in the corresponding positions of two strings. The two strings must be the same length.
@@ -240,3 +279,5 @@ smart-match is a free software. See the file LICENSE for the full text.
 - YuQiang Feng
 - XianFeng Du
 - Zifan Guo
+- JingLin Wu
+- Mingyang Shao

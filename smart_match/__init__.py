@@ -1,7 +1,7 @@
 from .damerau_levenshtein import *
 from .levenshtein import *
-from .overlapcoefficient import *
-from .generalizedoverlapcoefficient import *
+from .overlap_coefficient import *
+from .generalized_overlap_coefficient import *
 from .block_distance import *
 from .cosine_similarity import *
 from .dice_similarity import *
@@ -13,6 +13,7 @@ from .jaro import *
 from .jaro_winkler import *
 from .smith_waterman_gotoh import *
 from .simon_white import *
+from .longest_common_substring import *
 
 _method = Levenshtein()
 
@@ -26,11 +27,19 @@ def get_method(name=None, verbose=False):
     elif name == 'DL':
         if verbose:
             print('mode change to DamerauLevenshtein')
-        _method = DamerauLevenshtein()    
-    elif mode == "OC":
-        _method = OverlapCoefficient()
-    elif mode == "GOC":
-        _method = GeOverlapCoefficient()
+        return DamerauLevenshtein()
+    elif name == "OC":
+        if verbose:
+            print('mode change to OverlapCoefficient')
+        return OverlapCoefficient()
+    elif name == "GOC":
+        if verbose:
+            print('mode change to GeneralizedOverlapCoefficient')
+        return GeneralizedOverlapCoefficient()
+    elif name == "LCS":
+        if verbose:
+            print('mode change to LongestCommonSubstring')
+        return LongestCommonSubstring()
     elif name == 'BD':
         if verbose:
             print('mode change to BlockDistance')
@@ -79,6 +88,7 @@ def get_method(name=None, verbose=False):
         raise NotImplementedError
 
 def set_params(*args, **kwargs):
+    global _method
     _method.set_params(*args, **kwargs )
 
 def use(name=None, verbose=False):
@@ -96,3 +106,7 @@ def dissimilarity(s, t):
 def distance(s, t):
     global _method
     return _method.distance(s, t)
+
+def score(s, t):
+    global _method
+    return _method.score(s, t)

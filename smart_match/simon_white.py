@@ -2,19 +2,19 @@ from collections import Counter
 
 class SimonWhite:
 
-    def similarity(self, a, b):
-        if not a and not b:
-            return 1
-        if not a or not b:
-            return 0
+    def similarity(self, x, y):
+        if not x and not y:
+            return 1.0
+        if not x or not y:
+            return 0.0
 
-        freqA = Counter(a)
-        freqB = Counter(b)
+        s_freq = Counter(x)
+        t_freq = Counter(y)
 
-        intersection = freqA & freqB
+        intersection = s_freq & t_freq
         intersection_size = sum(intersection.values())
 
-        return 2 * intersection_size / (len(a) + len(b))
+        return 2 * intersection_size / (len(x) + len(y))
 
     def dissimilarity(self, a, b):
         return 1 - self.similarity(a, b)

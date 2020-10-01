@@ -11,10 +11,7 @@ class TestOverlapCoefficient(unittest.TestCase):
 
     def test_dissimilarity(self):
         self.assertEqual(smart_match.dissimilarity('hello', 'hero'), 0.25)
-
-    def test_distance(self):
-        self.assertEqual(smart_match.distance('hello', 'hero'), 0.25)
-        self.assertEqual(smart_match.distance('hello', 'ehllo'), 1-0.8)
+        self.assertEqual(smart_match.dissimilarity('hello', 'ehllo'), 0)
 
 if __name__ == '__main__':
     unittest.main()

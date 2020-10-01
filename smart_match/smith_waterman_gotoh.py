@@ -15,9 +15,9 @@ class SmithWatermanGotoh(MatSim):
 
     def similarity(self, s, t):
         if not s and not t:
-            return 1
+            return 1.0
         if not s or not t:
-            return 0
+            return 0.0
         max_score = min(len(s), len(t)) * self.match
         return self.score(s, t) / max_score
     
