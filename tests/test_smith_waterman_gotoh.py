@@ -1,7 +1,7 @@
 import unittest
 import smart_match
 
-class TestLevenshtein(unittest.TestCase):
+class TestSmithWatermanGotoh(unittest.TestCase):
     
     def setUp(self):
         smart_match.use('SWG')

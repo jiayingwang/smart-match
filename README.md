@@ -26,7 +26,8 @@ BD  |    Block Distance   |     ✅   |    ✅        |  ✅  | ❌
 cos  | Cosine Similarity |     ✅   |    ✅        |  ❌ | ❌
 dice | Dice Similarity |     ✅   |    ✅        |  ❌ | ❌
 simon | SimonWhite | ✅ | ✅ | ❌ | ❌
-LCS | LongestCommonSubstring | ✅ | ✅ | ✅ | ✅
+LCST | LongestCommonSubstring | ✅ | ✅ | ✅ | ✅
+LCSQ | LongestCommonSubSequence | ✅ | ✅ | ✅ | ✅
 OC | OverlapCoefficient | ✅ | ✅ | ❌ | ❌
 GOC | GeneralizedOverlapCoefficient | ✅ | ✅ | ❌ | ❌
 jac  | Jaccard     |  ✅ | ✅ | ❌ | ❌
@@ -182,15 +183,26 @@ Output:
 0.8
 ```
 
-__LCS(LongestCommonSubstring)__: The longest common substring is similarity based on finding longest string that is a substring of two strings.
+__LCST(LongestCommonSubstring)__: The longest common substring is a similarity based on finding longest string that is a substring of two strings.
 
 ```python
-smart_match.use('LCS')
+smart_match.use('LCST')
 print(smart_match.similarity('hello', 'low'))
 ```
 Output:
 ```shell
 0.4
+```
+
+__LCSQ(LongestCommonSubsequence)__: The longest common subsequence is a similarity based on finding longest subsequence that is a subsequence of two strings.
+
+```python
+smart_match.use('LCSQ')
+print(smart_match.similarity('hello', 'hill'))
+```
+Output:
+```shell
+0.6
 ```
 
 __HD(HammingDistance)__: Hamming distance is the number of different characters in the corresponding positions of two strings. The two strings must be the same length.
@@ -281,3 +293,4 @@ smart-match is a free software. See the file LICENSE for the full text.
 - Zifan Guo
 - JingLin Wu
 - Mingyang Shao
+- Yaxin Li

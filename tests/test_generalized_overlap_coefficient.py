@@ -1,7 +1,7 @@
 import unittest
 import smart_match
 
-class TestOverlapCoefficient(unittest.TestCase):
+class TestGeneralizedOverlapCoefficient(unittest.TestCase):
     
     def setUp(self):
         smart_match.use('GOC')

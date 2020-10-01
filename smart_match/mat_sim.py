@@ -62,7 +62,10 @@ class MatSim:
             
         return row1[len(t)]
     
-    def lcs(self, s, t):        
+    def lc_substring(self, s, t):
+        '''
+            longest common substring
+        '''
         row1 = [0]*(len(t)+1)
         row2 = [0]*(len(t)+1)
         
@@ -78,3 +81,23 @@ class MatSim:
             row1, row2 = row2, [0]*(len(t)+1)
             
         return max_len
+    
+    def lc_subsequence(self, s, t):
+        '''
+            longest common substring
+        '''
+        row1 = [0]*(len(t)+1)
+        row2 = [0]*(len(t)+1)
+        
+        max_len = 0
+            
+        for i in range(len(s)):
+            row2[0] = 0
+            for j in range(len(t)):
+                if s[i] == t[j]:
+                    row2[j+1] = row1[j] + 1
+                else:
+                    row2[j+1] = max(row2[j], row1[j+1])
+            row1, row2 = row2, row1
+            
+        return row1[len(t)]

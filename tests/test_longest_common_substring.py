@@ -1,10 +1,10 @@
 import unittest
 import smart_match
 
-class TestOverlapCoefficient(unittest.TestCase):
+class TestLongestCommonSubstring(unittest.TestCase):
     
     def setUp(self):
-        smart_match.use('LCS')
+        smart_match.use('LCST')
 
     def test_similarity(self):
         self.assertEqual(smart_match.similarity('hello', 'low'), 0.4)
