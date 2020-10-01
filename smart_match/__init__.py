@@ -1,5 +1,7 @@
 from .damerau_levenshtein import *
 from .levenshtein import *
+from .overlapcoefficient import *
+from .generalizedoverlapcoefficient import *
 from .block_distance import *
 from .cosine_similarity import *
 from .dice_similarity import *
@@ -24,7 +26,11 @@ def get_method(name=None, verbose=False):
     elif name == 'DL':
         if verbose:
             print('mode change to DamerauLevenshtein')
-        return DamerauLevenshtein()
+        _method = DamerauLevenshtein()    
+    elif mode == "OC":
+        _method = OverlapCoefficient()
+    elif mode == "GOC":
+        _method = GeOverlapCoefficient()
     elif name == 'BD':
         if verbose:
             print('mode change to BlockDistance')
