@@ -7,7 +7,7 @@ The smart-match module contains functions for calculating strings/sets similarit
 1. similarity
 A value in a range of [0, 1], which represents how similar the two strings are. 
 The larger the value, the more similar the two strings are.
-s
+
 2. dissimilarity
 A value in a range of [0, 1], which represents how dissimilar the two strings are. 
 The larger the value, the more dissimilar the two strings are.
