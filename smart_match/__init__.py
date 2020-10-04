@@ -11,6 +11,7 @@ from .hamming_distance import *
 from .generalized_jaccard import *
 from .jaro import *
 from .jaro_winkler import *
+from .smith_waterman import *
 from .smith_waterman_gotoh import *
 from .simon_white import *
 from .longest_common_substring import *
@@ -51,6 +52,8 @@ def get_method(name=None):
         return JaroWinkler()
     elif name == 'simon':
         return SimonWhite()
+    elif name == 'SW':
+        return SmithWaterman()
     elif name == 'SWG':
         return SmithWatermanGotoh()
     elif name == 'ME':

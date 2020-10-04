@@ -35,6 +35,7 @@ gjac | GeneralizedJaccard | ✅ | ✅ | ❌ | ❌
 HD | HammingDistance | ✅ | ✅ | ✅ | ❌
 jaro | Jaro | ✅ | ✅ | ❌ | ❌
 JW | JaroWinkler | ✅ | ✅ | ❌ | ❌
+SW | SmithWaterman | ✅ | ✅ | ❌ | ✅
 SWG | SmithWatermanGotoh | ✅ | ✅ | ❌ | ✅
 MK   | MongeElkan  |  ✅ | ✅ | ❌ | ❌
 
@@ -245,14 +246,32 @@ Output:
 0.9066666666666667
 ```
 
-__SWG(SmithWatermanGotoh)__: Applies the Smith-Waterman algorithm to calculate the similarity between two strings. This implementation uses optimizations proposed by Osamu Gotoh.
+__SW(SmithWaterman)__: Applies the Smith-Waterman algorithm to calculate the similarity between two strings.
 Mathematically
 
-<img src="https://render.githubusercontent.com/render/math?math=%24score_%7Bi%2C%20j%7D%20%3D%20%5Cmax%20%5Cbegin%7Bcases%7D%0A0%20%5C%5C%0Ascore_%7Bi-1%2C%20j-1%7D%20%2B%20substitute(s_i%2C%20t_j)%20%5C%5C%0Ascore_%7Bi-1%2C%20j%7D%20%2B%20gap%20%5C%5C%0Ascore_%7Bi%2C%20j-1%7D%20%2B%20gap%20%5C%5C%0A%5Cend%7Bcases%7D%24">
+<img src="https://render.githubusercontent.com/render/math?math=%24score_%7Bi%2C%20j%7D%20%3D%20%5Cmax%20%5Cbegin%7Bcases%7D%0A0%20%5C%5C%0Ascore_%7Bi-1%2C%20j-1%7D%20%2B%20compare(s_i%2C%20t_j)%20%5C%5C%0A%5Cmax_%7B1%20%5Cleq%20k%20%5Cleq%20i%7D(score_%7Bi-k%2C%20j%7D%20%2B%20gap%5E*%20%2B%20(k-1)%20%5Ctimes%20gap)%20%5C%5C%0A%5Cmax_%7B1%20%5Cleq%20k%20%5Cleq%20j%7D(score_%7Bi%2C%20j-k%7D%20%2B%20gap%5E*%20%2B%20(k-1)%20%5Ctimes%20gap)%20%5C%5C%0A%5Cend%7Bcases%7D%24">
 
 in which 
 
-<img src="https://render.githubusercontent.com/render/math?math=substitute(s_i%2C%20t_j)%20%3D%20%5Cbegin%7Bcases%7D%0Amatch%20%26%20%5Ctext%7Bif%20%7D%20s_i%20%3D%20t_j%20%5C%5C%0Amismatch%20%26%20%5Ctext%7Botherwise%7D%0A%5Cend%7Bcases%7D">
+<img src="https://render.githubusercontent.com/render/math?math=%24compare(s_i%2C%20t_j)%20%3D%20%5Cbegin%7Bcases%7D%0Amatch%20%26%20%5Ctext%7Bif%20%7D%20s_i%20%3D%20t_j%20%5C%5C%0Amismatch%20%26%20%5Ctext%7Botherwise%7D%0A%5Cend%7Bcases%7D%24">
+
+```python
+smart_match.use('SW')
+print(smart_match.similarity('Web Aplications', 'Web Application Development With PHP'))
+```
+Output:
+```shell
+0.8666666666666667
+```
+
+__SWG(SmithWatermanGotoh)__: Applies the Smith-Waterman algorithm to calculate the similarity between two strings. This implementation uses optimizations proposed by Osamu Gotoh.
+Mathematically
+
+<img src="https://render.githubusercontent.com/render/math?math=%24score_%7Bi%2C%20j%7D%20%3D%20%5Cmax%20%5Cbegin%7Bcases%7D%0A0%20%5C%5C%0Ascore_%7Bi-1%2C%20j-1%7D%20%2B%20compare(s_i%2C%20t_j)%20%5C%5C%0Ascore_%7Bi-1%2C%20j%7D%20%2B%20gap%20%5C%5C%0Ascore_%7Bi%2C%20j-1%7D%20%2B%20gap%20%5C%5C%0A%5Cend%7Bcases%7D%24">
+
+in which 
+
+<img src="https://render.githubusercontent.com/render/math?math=%24compare(s_i%2C%20t_j)%20%3D%20%5Cbegin%7Bcases%7D%0Amatch%20%26%20%5Ctext%7Bif%20%7D%20s_i%20%3D%20t_j%20%5C%5C%0Amismatch%20%26%20%5Ctext%7Botherwise%7D%0A%5Cend%7Bcases%7D%24">
 
 ```python
 smart_match.use('SWG')
@@ -294,3 +313,4 @@ smart-match is a free software. See the file LICENSE for the full text.
 - JingLin Wu
 - Mingyang Shao
 - Yaxin Li
+- Xueqing Xin
