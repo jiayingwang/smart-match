@@ -1,13 +1,13 @@
 # Introduction
 
-The smart-match module contains functions for functions for calculating string similarity.
+The smart-match module contains functions for calculating strings/sets similarity.
 
 ## Concept
 
 1. similarity
 A value in a range of [0, 1], which represents how similar the two strings are. 
 The larger the value, the more similar the two strings are.
-
+s
 2. dissimilarity
 A value in a range of [0, 1], which represents how dissimilar the two strings are. 
 The larger the value, the more dissimilar the two strings are.
@@ -20,10 +20,12 @@ How far the two strings are. Notice that not all the methods support distance me
 
 Abbreviation | Full name | similarity | dissimilarity | distance | score
 -------------|-----------|------------|---------------|----------|------
-ED(Default) | Levenshtein |     ✅   |    ✅        |  ✅  | ❌
+LE(Default) | Levenshtein |     ✅   |    ✅        |  ✅  | ❌
+ED  | EuclideanDistance   |     ✅   |    ✅        |  ✅  | ❌
 DL  | Damerau Levenshtein |     ✅   |    ✅        |  ✅  | ❌
 BD  |    Block Distance   |     ✅   |    ✅        |  ✅  | ❌
 cos  | Cosine Similarity |     ✅   |    ✅        |  ❌ | ❌
+TC | TanimotoCoefficient | ✅ | ✅ | ❌ | ❌
 dice | Dice Similarity |     ✅   |    ✅        |  ❌ | ❌
 simon | SimonWhite | ✅ | ✅ | ❌ | ❌
 LCST | LongestCommonSubstring | ✅ | ✅ | ✅ | ✅
@@ -35,6 +37,7 @@ gjac | GeneralizedJaccard | ✅ | ✅ | ❌ | ❌
 HD | HammingDistance | ✅ | ✅ | ✅ | ❌
 jaro | Jaro | ✅ | ✅ | ❌ | ❌
 JW | JaroWinkler | ✅ | ✅ | ❌ | ❌
+NW | NeedlemanWunch | ✅ | ✅ | ❌ | ✅
 SW | SmithWaterman | ✅ | ✅ | ❌ | ✅
 SWG | SmithWatermanGotoh | ✅ | ✅ | ❌ | ✅
 MK   | MongeElkan  |  ✅ | ✅ | ❌ | ❌
@@ -48,7 +51,7 @@ pip install smart-match
 
 # Usage
 
-- Default method ED(Levenshtein): It also called edit distance, which is the minimum number of single-character edits (insertions, deletions or substitutions) required to change one word into the other
+- Default method LE(Levenshtein): It is also called edit distance, which is the minimum number of single-character edits (insertions, deletions or substitutions) required to change one word into the other.
 
 ```python
 import smart_match
@@ -64,6 +67,17 @@ Output:
 ```
 
 - change to the other methods:
+
+__ED(EuclideanDistance)__: It calculate the euclidean distance of the two stings.
+
+```python
+smart_match.use('ED')
+print(smart_match.distance('hello', 'hero'))
+```
+Output:
+```shell
+0.34921514788478913
+```
 
 __DL(Damerau Levenshtein)__: It consider the cost of transposition of two adjacent characters to be 1. 
 
@@ -99,6 +113,17 @@ print(smart_match.similarity('hello', 'hero'))
 Output:
 ```shell
 0.5669467095138409
+```
+
+__TC(TanimotoCoefficient)__: Tanimoto coefficient is similar to Cosine similarity, but the occurrence of an entry will be taken into consideration.
+
+```python
+smart_match.use('TC')
+print(smart_match.similarity('test', 'test string1'))
+```
+Output:
+```shell
+0.5773502691896257
 ```
 
 __dice(Dice Similarity)__:  The similarity between two strings s1 and s2 is twice the number of character pairs that are common to both strings divided by the sum of the number of character pairs in the two strings. It is intended to be applied to discrete data, so the occurrence of an entry will be ignored. 
@@ -244,6 +269,17 @@ print(smart_match.similarity('TRATE', 'TRACE'))
 Output:
 ```shell
 0.9066666666666667
+```
+
+__NW(NeedlemanWunch)__: Applies the NeedlemanWunch algorithm to calculate the similarity between two strings.
+
+```python
+smart_match.use('NW')
+print(smart_match.similarity('test string1', 'test string2'))
+```
+Output:
+```shell
+0.9583333333333334
 ```
 
 __SW(SmithWaterman)__: Applies the Smith-Waterman algorithm to calculate the similarity between two strings.

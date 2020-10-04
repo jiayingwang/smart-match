@@ -16,14 +16,22 @@ from .smith_waterman_gotoh import *
 from .simon_white import *
 from .longest_common_substring import *
 from .longest_common_subsequence import *
+from .needleman_wunch import *
+from .tanimoto_coefficient import *
+from .gram import *
+from .euclidean_distance import *
 
 _method = Levenshtein()
+_level = 'char'
+_verbose = False
 
 def get_method(name=None):
     if not name:
-        name = 'ED'
-    if name == 'ED':
+        name = 'LE'
+    if name == 'LE':
         return Levenshtein()
+    if name == 'ED':
+        return EuclideanDistance()
     elif name == 'DL':
         return DamerauLevenshtein()
     elif name == "OC":
@@ -38,6 +46,8 @@ def get_method(name=None):
         return BlockDistance()
     elif name == 'cos':
         return CosineSimilarity()
+    elif name == 'TC':
+        return TanimotoCoefficient()
     elif name == 'dice':
         return DiceSimilarity()
     elif name == 'jac':
@@ -52,6 +62,8 @@ def get_method(name=None):
         return JaroWinkler()
     elif name == 'simon':
         return SimonWhite()
+    elif name == 'NW':
+        return NeedlemanWunch()
     elif name == 'SW':
         return SmithWaterman()
     elif name == 'SWG':
@@ -61,28 +73,52 @@ def get_method(name=None):
     else:
         raise NotImplementedError
 
-def set_params(*args, **kwargs):
-    global _method
-    _method.set_params(*args, **kwargs )
+def set_params(level=None, verbose=False, *args, **kwargs):
+    if level:
+        global _level
+        _level = level
+    global _verbose
+    _verbose = verbose 
+    if args or kwargs:
+        global _method
+        _method.set_params(*args, **kwargs)
 
-def use(name=None, verbose=False):
+def use(name=None, level='char'):
     global _method
     _method = get_method(name)
-    if verbose:
-        print('mode change to', _method)
+    set_params(level)
+    global _verbose
+    if _verbose:
+        print(f'mode change to {_method}[level={_level}]')
+        
+def tokenize(s, t):
+    global _level
+    if _level == 'char':
+        return s, t
+    elif _level == 'term':
+        return s.split(), t.split()
+    elif isinstance(_level, int):
+        gram = Gram(q=_level)
+        return gram.grams(s), gram.grams(t)
+    else:
+        return NotImplementedError
 
 def similarity(s, t):
     global _method
+    s, t = tokenize(s, t)
     return _method.similarity(s, t)
 
 def dissimilarity(s, t):
     global _method
+    s, t = tokenize(s, t)
     return _method.dissimilarity(s, t)
 
 def distance(s, t):
     global _method
+    s, t = tokenize(s, t)
     return _method.distance(s, t)
 
 def score(s, t):
     global _method
+    s, t = tokenize(s, t)
     return _method.score(s, t)

@@ -7,7 +7,8 @@ class MongeElkan:
         self.method = smart_match.get_method()
         
     def set_params(self, method=None):
-        self.method = smart_match.get_method(method)
+        if method:
+            self.method = smart_match.get_method(method)
     
     def similarity(self, X, Y):
         if not X and not Y:
