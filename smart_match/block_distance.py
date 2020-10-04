@@ -1,6 +1,6 @@
 from collections import Counter
 
-class BlockDistance:
+class BlockDistance():
         
     def similarity(self, s, t):
         return 1 - self.dissimilarity(s, t)

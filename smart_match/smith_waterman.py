@@ -4,16 +4,6 @@ class SmithWaterman(MatSim):
     
     def __init__(self):
         super().__init__(start_gap=-5, gap=-1, mismatch=-3, match=5, opt=max)
-        
-    def set_params(self, start_gap=None, gap=None, mismatch=None, match=None):
-        if start_gap:
-            self.start_gap = start_gap
-        if gap:
-            self.gap = gap
-        if mismatch:
-            self.mismatch = mismatch
-        if match:
-            self.match = match
 
     def similarity(self, s, t):
         if not s and not t:
