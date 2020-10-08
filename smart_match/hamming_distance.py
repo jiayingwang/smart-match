@@ -11,9 +11,6 @@ class HammingDistance:
     def distance(self, s, t):
         assert len(s) == len(t), 'undefined for sequences of unequal length'
         
-        if not s:
-            return 0
-        
         distance = 0
         for s1,t1 in zip(s, t):
             if(s1 != t1):

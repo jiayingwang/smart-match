@@ -10,16 +10,16 @@ class JaroWinkler:
     
     def similarity(self, s, t):
         jaro_similarity = self.jaro.similarity(s, t)
-        if jaro_similarity > 0.7:
+        if jaro_similarity > self.boost_threshold:
             prefix = 0
             for i in range(min(len(s), len(t))):
                 if s[i] == t[i]:
                     prefix += 1
                 else:
                     break
-            prefix = min(4, prefix)
+            prefix = min(self.max_prefix_length, prefix)
 
-            jaro_similarity += 0.1 * prefix * (1 - jaro_similarity)
+            jaro_similarity += self.prefix_scale * prefix * (1 - jaro_similarity)
         
         return jaro_similarity
     
