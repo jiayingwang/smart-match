@@ -30,7 +30,7 @@ class Jaro:
                 if s[i] != t[j]:
                     transpositions += 1
                 j += 1
-        return  (matches/len(s) + matches / len(t) + (matches-(transpositions//2)) / matches) / 3
+        return  (matches/len(s) + matches / len(t) + (matches-(transpositions/2)) / matches) / 3
     
     def dissimilarity(self, s, t):
         return 1 - self.similarity(s, t)
