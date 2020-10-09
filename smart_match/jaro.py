@@ -7,7 +7,7 @@ class Jaro:
         if not s or not t:
             return 0.0
 
-        max_dist = (len(t) // 2) - 1
+        max_dist = (max(len(s), len(t)) // 2) - 1
 
         matches = 0
         hash_s = [0] * len(s) 
