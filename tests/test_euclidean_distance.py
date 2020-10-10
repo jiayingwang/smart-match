@@ -49,7 +49,6 @@ class TestEuclideanDistance(unittest.TestCase):
         self.assertAlmostEqual(smart_match.similarity('Web Aplications','Structural Assessment: The Role of Large and Full-Scale Testing'),0.6402615329077492)
         self.assertAlmostEqual(smart_match.similarity('Web Aplications','How to Find a Scholarship Online'),0.5527864045000421)
         
-
     def test_dissimilarity(self):
         self.assertAlmostEqual(smart_match.dissimilarity('hello', 'hero'), 0.34921514788478913)
         self.assertAlmostEqual(smart_match.dissimilarity('hello', 'ehllo'),0.0)
@@ -133,8 +132,6 @@ class TestEuclideanDistance(unittest.TestCase):
         self.assertEqual(smart_match.distance('Web Aplications','WebRAD: Building Database Applications on the Web with Visual FoxPro and Web Connection'),18.0)
         self.assertEqual(smart_match.distance('Web Aplications','Structural Assessment: The Role of Large and Full-Scale Testing'),13.564659966250536)
         self.assertEqual(smart_match.distance('Web Aplications','How to Find a Scholarship Online'),6.4031242374328485)
-
-
 
 if __name__ == '__main__':
     unittest.main()

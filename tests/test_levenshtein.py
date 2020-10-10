@@ -49,7 +49,6 @@ class TestLevenshtein(unittest.TestCase):
         self.assertEqual(smart_match.similarity('Web Aplications','Structural Assessment: The Role of Large and Full-Scale Testing'),0.11111111111111116)
         self.assertEqual(smart_match.similarity('Web Aplications','How to Find a Scholarship Online'),0.1875)
         
-
     def test_dissimilarity(self):
         self.assertEqual(smart_match.dissimilarity('hello', 'hero'), 0.4)
         self.assertEqual(smart_match.dissimilarity('Subsitute', 'Subsytute'), 0.1111111111111111)
@@ -92,7 +91,6 @@ class TestLevenshtein(unittest.TestCase):
         self.assertEqual(smart_match.dissimilarity('Web Aplications','WebRAD: Building Database Applications on the Web with Visual FoxPro and Web Connection'),0.8275862068965517)
         self.assertEqual(smart_match.dissimilarity('Web Aplications','Structural Assessment: The Role of Large and Full-Scale Testing'),0.8888888888888888)
         self.assertEqual(smart_match.dissimilarity('Web Aplications','How to Find a Scholarship Online'),0.8125)
-
 
     def test_distance(self):
         self.assertEqual(smart_match.distance('hello', 'hero'), 2)
@@ -137,7 +135,6 @@ class TestLevenshtein(unittest.TestCase):
         self.assertEqual(smart_match.distance('Web Aplications','WebRAD: Building Database Applications on the Web with Visual FoxPro and Web Connection'),72)
         self.assertEqual(smart_match.distance('Web Aplications','Structural Assessment: The Role of Large and Full-Scale Testing'),56)
         self.assertEqual(smart_match.distance('Web Aplications','How to Find a Scholarship Online'),26)
-
 
 if __name__ == '__main__':
     unittest.main()

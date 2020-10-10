@@ -13,7 +13,7 @@ class TestSimonWhite(unittest.TestCase):
         smart_match.set_params(level='term')
         self.assertAlmostEqual(smart_match.similarity('test string1', 'test string2'), 0.5)
         smart_match.set_params(level=2)
-        self.assertAlmostEqual(smart_match.similarity('test', 'test string2'), 0.4285714285714285)
+        self.assertAlmostEqual(smart_match.similarity('test', 'test string2'), 0.5)
 
     def test_dissimilarity(self):
         self.assertAlmostEqual(smart_match.dissimilarity('abbcccdd', 'aaabccee'), 0.5)

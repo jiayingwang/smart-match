@@ -134,5 +134,6 @@ class TestDamerauLevenshtein(unittest.TestCase):
             "Structural Assessment: The Role of Large and Full-Scale Testing"),56.0000)
         self.assertEqual(smart_match.distance("Web Aplications",
             "How to Find a Scholarship Online"),26.0000)
+
 if __name__ == '__main__':
     unittest.main()
