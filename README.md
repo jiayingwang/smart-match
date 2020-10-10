@@ -16,6 +16,10 @@ For a pair of strings, similarity = 1 - dissimilarity
 3. distance
 How far the two strings are. Notice that not all the methods support distance method.
 
+4. score
+The larger the score, the more similar the two strings are. Notice not all the methods have score method.
+
+
 ## Methods
 
 Abbreviation | Full name | similarity | dissimilarity | distance | score
