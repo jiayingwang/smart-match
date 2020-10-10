@@ -2,34 +2,37 @@ class Jaro:
     
     def similarity(self, s, t):
         if not s and not t:
-            return 1
+            return 1.0
         
         if not s or not t:
-            return 0
-        
-        if len(s) > len(t):
-            s, t = t, s
+            return 0.0
 
-        max_dist = (len(t) // 2) - 1
+        max_dist = (max(len(s), len(t)) // 2) - 1
 
-        s_matched = []
-        t_matched = []
         matches = 0
+        hash_s = [0] * len(s) 
+        hash_t = [0] * len(t) 
 
         for i, c in enumerate(s):
             for j in range(max(0, i-max_dist), min(len(t), i+max_dist+1)):
-                if c == t[j]:
+                if c == t[j] and hash_t[j] == 0:
                     matches += 1
-                    s_matched.append(c)
-                    t_matched.insert(j, c)
+                    hash_s[i] = 1
+                    hash_t[j] = 1
                     break
         
         transpositions = 0
-        for m in range(0, len(s_matched)):
-            if(s_matched[m] != t_matched[m]):
-                transpositions += 1
-
-        return  (matches/len(s) + matches / len(t) + (matches-(transpositions//2)) / matches) / 3
+        j = 0
+        for i in range(0, len(s)):
+            if hash_s[i]:
+                while hash_t[j] == 0:
+                    j += 1
+                if s[i] != t[j]:
+                    transpositions += 1
+                j += 1
+        if matches == 0:
+            return 0.0
+        return  (matches/len(s) + matches / len(t) + (matches-(transpositions/2)) / matches) / 3
     
     def dissimilarity(self, s, t):
         return 1 - self.similarity(s, t)

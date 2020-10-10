@@ -45,8 +45,6 @@ class TestDiceSimilarity(unittest.TestCase):
         self.assertAlmostEqual(smart_match.similarity('Web Applications', 'Structural Assessment: The Role of Large and Full-Scale Testing'), 0.0000)
         self.assertAlmostEqual(smart_match.similarity('Web Applications', 'How to Find a Scholarship Online'), 0.0000)
 
-
-
     def test_dissimilarity(self):
         self.assertAlmostEqual(smart_match.dissimilarity('hello', 'hero'), 0.25)
         smart_match.set_params(level='term')
@@ -55,13 +53,6 @@ class TestDiceSimilarity(unittest.TestCase):
         self.assertAlmostEqual(smart_match.dissimilarity('', 'test string2'), 1.0000)
         self.assertAlmostEqual(smart_match.dissimilarity('aaa bbb ccc ddd', 'aaa bbb ccc eee'), 0.2500)
         self.assertAlmostEqual(smart_match.dissimilarity('a b c d', 'a b c e'), 0.2500)
-
-
-
-
-
-
-
 
 if __name__ == '__main__':
     unittest.main()

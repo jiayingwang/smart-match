@@ -54,9 +54,6 @@ class TestJaccard(unittest.TestCase):
         self.assertAlmostEqual(smart_match.similarity('Web  Applications', 'Structural Assessment: The Role of Large and Full-Scale Testing'), 0.0000)
         self.assertAlmostEqual(smart_match.similarity('Web  Applications', 'How to Find a Scholarship Online'), 0.0000)
 
-
-
-
     def test_dissimilarity(self):
         self.assertAlmostEqual(smart_match.dissimilarity('hello', 'helo'), 0)
         smart_match.set_params(level='term')
