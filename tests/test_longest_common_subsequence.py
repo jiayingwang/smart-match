@@ -21,14 +21,9 @@ class TestLongestCommonSubsequence(unittest.TestCase):
         self.assertEqual(smart_match.similarity('Healed', 'Sealed'), 0.8333333333333334)
         self.assertEqual(smart_match.similarity('Healed', 'Healthy'), 0.5714285714285714)
 
-
         self.assertEqual(smart_match.similarity('Web Database Applications', 'Web Database Applications with PHP & MySQL'), 0.5952380952380952)
         self.assertEqual(smart_match.similarity('Web Database Applications', 'Building Database Applications on the Web Using PHP3'),0.4230769230769231)
         self.assertEqual(smart_match.similarity('Web Database Applications','Building Web Database Applications with Visual Studio 6'), 0.45454545454545453)
-
-
-
-
 
         self.assertEqual(smart_match.similarity('Healed', 'Heard'), 0.6666666666666666)
         self.assertEqual(smart_match.similarity('Healed', 'Herded'), 0.6666666666666666)
@@ -94,7 +89,6 @@ class TestLongestCommonSubsequence(unittest.TestCase):
         self.assertEqual(smart_match.dissimilarity('Web Aplications','WebRAD: Building Database Applications on the Web with Visual FoxPro and Web Connection'),0.8275862068965517)
         self.assertEqual(smart_match.dissimilarity('Web Aplications','Structural Assessment: The Role of Large and Full-Scale Testing'),0.873015873015873)
         self.assertEqual(smart_match.dissimilarity('Web Aplications', 'How to Find a Scholarship Online'), 0.8125)
-
     
     def test_distance(self):
         self.assertEqual(smart_match.distance('hello', 'hill'), 3)
@@ -177,7 +171,6 @@ class TestLongestCommonSubsequence(unittest.TestCase):
         self.assertEqual(smart_match.score('Web Aplications','WebRAD: Building Database Applications on the Web with Visual FoxPro and Web Connection'),15)
         self.assertEqual(smart_match.score('Web Aplications', 'Structural Assessment: The Role of Large and Full-Scale Testing'),8)
         self.assertEqual(smart_match.score('Web Aplications', 'How to Find a Scholarship Online'), 6)
-
 
 if __name__ == '__main__':
     unittest.main()

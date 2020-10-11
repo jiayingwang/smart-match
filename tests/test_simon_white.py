@@ -11,10 +11,8 @@ class TestSimonWhite(unittest.TestCase):
         self.assertAlmostEqual(smart_match.similarity('abbcccdd', 'aaabccee'), 0.5)
         self.assertAlmostEqual(smart_match.similarity('hello', 'hollow'), 0.7272727272727273)
 
-
         smart_match.set_params(level='term')
         self.assertAlmostEqual(smart_match.similarity('test string1', 'test string2'), 0.5)
-
 
         smart_match.set_params(level=2)
         self.assertAlmostEqual(smart_match.similarity('test', 'test string2'), 0.5)
@@ -25,7 +23,6 @@ class TestSimonWhite(unittest.TestCase):
         self.assertAlmostEqual(smart_match.similarity('Healed', 'Herded'), 0.4)
         self.assertAlmostEqual(smart_match.similarity('Healed', 'Help'), 0.25)
         self.assertAlmostEqual(smart_match.similarity('Healed', 'sold'), 0.0)
-
         self.assertAlmostEqual(smart_match.similarity('Sam J Chapman', 'Samuel John Chapman'),0.7272727272727273)
         self.assertAlmostEqual(smart_match.similarity('Sam Chapman', 'S Chapman'), 0.8571428571428571)
         self.assertAlmostEqual(smart_match.similarity('John Smith', 'Samuel John Chapman'),0.2857142857142857)
@@ -87,7 +84,6 @@ class TestSimonWhite(unittest.TestCase):
         self.assertAlmostEqual(smart_match.dissimilarity('Web Aplications','WebRAD: Building Database Applications on the Web with Visual FoxPro and Web Connection'),0.6756756756756757)
         self.assertAlmostEqual(smart_match.dissimilarity('Web Aplications','Structural Assessment: The Role of Large and Full-Scale Testing'),0.9310344827586207)
         self.assertAlmostEqual(smart_match.dissimilarity('Web Aplications', 'How to Find a Scholarship Online'),0.9393939393939394)
-
 
 if __name__ == '__main__':
     unittest.main()
