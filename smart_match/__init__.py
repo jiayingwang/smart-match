@@ -20,6 +20,7 @@ from .needleman_wunch import *
 from .tanimoto_coefficient import *
 from .gram import *
 from .euclidean_distance import *
+from .exact import *
 
 _method = Levenshtein()
 _level = 'char'
@@ -68,6 +69,8 @@ def get_method(name=None):
         return SmithWaterman()
     elif name == 'SWG':
         return SmithWatermanGotoh()
+    elif name == 'EX':
+        return Exact()
     elif name == 'ME':
         return MongeElkan()
     else:
