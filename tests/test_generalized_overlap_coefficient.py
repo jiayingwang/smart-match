@@ -19,7 +19,6 @@ class TestGeneralizedOverlapCoefficient(unittest.TestCase):
         self.assertAlmostEqual(smart_match.similarity('Healed', 'Help'), 0.75)
         self.assertAlmostEqual(smart_match.similarity('Healed', 'Sold'), 0.5)
         
-        
         smart_match.set_params(level='term')
         self.assertAlmostEqual(smart_match.similarity('test string1', 'test string2'), 0.5)
         self.assertAlmostEqual(smart_match.similarity('test', 'test string2'), 1)
@@ -52,9 +51,8 @@ class TestGeneralizedOverlapCoefficient(unittest.TestCase):
         self.assertAlmostEqual(smart_match.similarity('Web Aplications', 'WebRAD: Building Database Applications on the Web with Visual FoxPro and Web Connection'), 0.5)
         self.assertAlmostEqual(smart_match.similarity('Web Aplications', 'Structural Assessment: The Role of Large and Full-Scale Testing'), 0)
         self.assertAlmostEqual(smart_match.similarity('Web Aplications', 'How to Find a Scholarship Online'), 0)
-              
-        
-        smart_match.set_params(level='setterm')
+                   
+        smart_match.set_params(level='char')
         self.assertAlmostEqual(smart_match.similarity(("test", None), ("test","string2")), 0.5)
 
     def test_dissimilarity(self):
@@ -74,7 +72,7 @@ class TestGeneralizedOverlapCoefficient(unittest.TestCase):
         self.assertAlmostEqual(smart_match.dissimilarity('aaa bbb ccc ddd', 'aaa bbb ccc eee'), 0.25)
         self.assertAlmostEqual(smart_match.dissimilarity('aaa bbb ccc ddd aaa bbb ccc ddd', 'aaa bbb ccc eee'), 0.25)
 
-        smart_match.set_params(level='setterm')
+        smart_match.set_params(level='char')
         self.assertAlmostEqual(smart_match.similarity(("test", None), ("test","string2")), 0.5)
 
 if __name__ == '__main__':

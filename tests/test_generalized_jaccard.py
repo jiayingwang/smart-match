@@ -45,9 +45,8 @@ class TestGeneralizedJaccard(unittest.TestCase):
         self.assertAlmostEqual(smart_match.similarity('a b c d', 'a b e f'), 0.3333333333333333)
         self.assertAlmostEqual(smart_match.similarity('a b c', 'a b c e f g'), 0.5)
         self.assertAlmostEqual(smart_match.similarity('a b b c c', 'a b c e f g'), 0.375)
-        
                 
-        smart_match.set_params(level='setterm')
+        smart_match.set_params(level='char')
         self.assertAlmostEqual(smart_match.similarity(('test', None), ('test', 'string2')), 0.3333333333333333)
 
     def test_dissimilarity(self):
@@ -66,7 +65,7 @@ class TestGeneralizedJaccard(unittest.TestCase):
         self.assertAlmostEqual(smart_match.dissimilarity('aaa bbb ccc ddd aaa bbb ccc ddd', 'aaa bbb ccc eee'), 0.6666666666666667)
 
         
-        smart_match.set_params(level='setterm')
+        smart_match.set_params(level='char')
         self.assertAlmostEqual(smart_match.dissimilarity(('test', None), ('test', 'string2')), 0.6666666666666667)
 
 if __name__ == '__main__':
