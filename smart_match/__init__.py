@@ -98,6 +98,8 @@ def tokenize(s, t):
     global _level
     if _level == 'char':
         return s, t
+    elif _level == 'setterm':
+        return list(s), list(t)
     elif _level == 'term':
         return s.split(), t.split()
     elif isinstance(_level, int):
