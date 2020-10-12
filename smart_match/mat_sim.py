@@ -84,7 +84,7 @@ class MatSim:
         
         row1 = [0]*(len(t)+1)
         row2 = [0]*(len(t)+1)
-        
+        max_cost = 0
         for i in range(len(t)+1):
             row1[i] = 0
             
@@ -94,9 +94,10 @@ class MatSim:
                 row2[j+1] = self.opt(0, row2[j] + self.gap,
                                     row1[j+1] + self.gap,
                                     row1[j] + (self.match if s[i] == t[j] else self.mismatch))
+                max_cost = max(max_cost, row2[j+1])
             row1, row2 = row2, row1
             
-        return row1[len(t)]
+        return max_cost
     
     def lc_substring(self, s, t):
         '''
