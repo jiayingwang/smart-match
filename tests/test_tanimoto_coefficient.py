@@ -6,6 +6,7 @@ class TestTanimotoCoefficient(unittest.TestCase):
         smart_match.use('TC')
         
     def test_similarity(self):
+        self.assertAlmostEqual(float('%.4f' % smart_match.similarity('test', 'test string1')), .5774)
         smart_match.set_params(level='term')
         self.assertAlmostEqual(float('%.4f' % smart_match.similarity("test string1", "test string2")), 0.5000)
         self.assertAlmostEqual(float('%.4f' % smart_match.similarity("test", "test string2")), 0.7071)
@@ -42,6 +43,7 @@ class TestTanimotoCoefficient(unittest.TestCase):
         self.assertAlmostEqual(float('%.4f' % smart_match.similarity("Web Aplications","Web Database Applications with PHP & MySQL")), 0.2673)
 
     def test_dissimilarity(self):
+        self.assertAlmostEqual(float('%.4f' % smart_match.dissimilarity('test', 'test string1')), 0.4226)
         smart_match.set_params(level='term')
         self.assertAlmostEqual(float('%.4f' % smart_match.dissimilarity("test string1", "test string2")), 0.5000)
         self.assertAlmostEqual(float('%.4f' % smart_match.dissimilarity("test", "test string2")), 0.2929)
@@ -67,7 +69,7 @@ class TestTanimotoCoefficient(unittest.TestCase):
         self.assertAlmostEqual(float('%.4f' % smart_match.dissimilarity("Sam J Chapman", "Samuel John Chapman")),
                                0.6667)
         self.assertAlmostEqual(float('%.4f' % smart_match.dissimilarity("Sam Chapman", "S Chapman")), 0.5000)
-        self.assertAlmostEqual(float('%.4f' % smart_match.dissimilarity("John Smith", "Samuel John Chapman")), 0.9518)
+        self.assertAlmostEqual(float('%.4f' % smart_match.dissimilarity("John Smith", "Samuel John Chapman")), 0.5918)
         self.assertAlmostEqual(float('%.4f' % smart_match.dissimilarity("John Smith", "Sam Chapman")), 1.0000)
         self.assertAlmostEqual(float('%.4f' % smart_match.dissimilarity("John Smith", "Sam J Chapman")), 1.0000)
         self.assertAlmostEqual(float('%.4f' % smart_match.dissimilarity("John Smith", "S Chapman")), 1.0000)
