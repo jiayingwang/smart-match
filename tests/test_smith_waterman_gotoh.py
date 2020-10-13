@@ -36,6 +36,9 @@ class TestSmithWatermanGotoh(unittest.TestCase):
         self.assertAlmostEqual(float('%.4f' % smart_match.similarity("Web Aplications","Web Application Development With PHP")), 0.9000)
         self.assertAlmostEqual(float('%.4f' % smart_match.similarity("Web Aplications","Structural Assessment: The Role of Large and Full-Scale Testing")), 0.1667)
         self.assertAlmostEqual(float('%.4f' % smart_match.similarity("Web Aplications","How to Find a Scholarship Online")), 0.1333)
+        self.assertAlmostEqual(float('%.4f' % smart_match.similarity('GGTTGACTA', 'TGTTACGG')), 0.3125)
+        smart_match.set_params(gap=-2, match=3, mismatch=-3)
+        self.assertAlmostEqual(float('%.4f' % smart_match.similarity('GGTTGACTA', 'TGTTACGG')), 0.2917)
 
     def test_dissimilarity(self):
         self.assertAlmostEqual(float('%.4f' % smart_match.dissimilarity("test string1", "test string2")), 0.0833)
@@ -75,5 +78,9 @@ class TestSmithWatermanGotoh(unittest.TestCase):
         self.assertAlmostEqual(float('%.4f' % smart_match.dissimilarity("Web Aplications","Structural Assessment: The Role of Large and Full-Scale Testing")),
                                0.8333)
         self.assertAlmostEqual(float('%.4f' % smart_match.dissimilarity("Web Aplications", "How to Find a Scholarship Online")), 0.8667)
+        self.assertAlmostEqual(float('%.4f' % smart_match.dissimilarity('GGTTGACTA', 'TGTTACGG')), 0.6875)
+        smart_match.set_params(gap=-2, match=3, mismatch=-3)
+        self.assertAlmostEqual(float('%.4f' % smart_match.dissimilarity('GGTTGACTA', 'TGTTACGG')), 0.7083)
+        
 if __name__ == '__main__':
         unittest.main()

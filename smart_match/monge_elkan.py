@@ -3,16 +3,19 @@ from math import sqrt
 
 class MongeElkan:
     
-    def __init__(self, method=None):
-        self.method = smart_match.get_method(method)
+    def __init__(self):
+        self.method = smart_match.get_method()
         
+    def set_params(self, method=None):
+        if method:
+            self.method = smart_match.get_method(method)
     
     def similarity(self, X, Y):
         if not X and not Y:
-            return 1
+            return 1.0
         
         if not X or not Y:
-            return 0
+            return 0.0
 
         return sqrt(self.monge_elkan(X, Y) * self.monge_elkan(Y, X))
     
