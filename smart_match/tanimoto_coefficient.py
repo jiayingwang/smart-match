@@ -1,6 +1,9 @@
-class Jaccard:
-        
+from math import sqrt
+
+class TanimotoCoefficient:
+          
     def similarity(self, s, t):
+      
         if not s and not t:
             return 1.0
         
@@ -13,10 +16,10 @@ class Jaccard:
         intersection = s_set.intersection(t_set)
         intersection_size = len(intersection)
                 
-        return intersection_size / (len(s_set) + len(t_set) - intersection_size)
+        return intersection_size / (sqrt(len(s_set))* sqrt(len(t_set)))
     
     def dissimilarity(self, s, t):
         return 1 - self.similarity(s, t)
     
     def __repr__(self):
-        return 'Jaccard'
+        return 'TanimotoCoefficient'

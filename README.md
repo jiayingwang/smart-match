@@ -1,6 +1,6 @@
 # Introduction
 
-The smart-match module contains functions for functions for calculating string similarity.
+The smart-match module contains functions for calculating strings/sets similarity.
 
 ## Concept
 
@@ -16,18 +16,35 @@ For a pair of strings, similarity = 1 - dissimilarity
 3. distance
 How far the two strings are. Notice that not all the methods support distance method.
 
+4. score
+The larger the score, the more similar the two strings are. Notice not all the methods have score method.
+
+
 ## Methods
 
-Abbreviation | Full name | similarity | dissimilarity | distance
--------------|-----------|------------|---------------|---------
-ED(Default) | Levenshtein |     Yes   |    Yes        |  Yes
-DL  | Damerau Levenshtein |     Yes   |    Yes        |  Yes
-BD  |    Block Distance   |     Yes   |    Yes        |  Yes
-cos  | Cosine Similarity |     Yes   |    Yes        |  No
-dice | Dice Similarity |     Yes   |    Yes        |  No
-MK   | MongeElkan  |  Yes | Yes | No
-jac  | Jaccard     |  Yes | Yes | No
-gjac | GeneralizedJaccard | Yes | Yes | No
+Abbreviation | Full name | similarity | dissimilarity | distance | score
+-------------|-----------|------------|---------------|----------|------
+LE(Default) | Levenshtein |     ✅   |    ✅        |  ✅  | ❌
+ED  | EuclideanDistance   |     ✅   |    ✅        |  ✅  | ❌
+DL  | Damerau Levenshtein |     ✅   |    ✅        |  ✅  | ❌
+BD  |    Block Distance   |     ✅   |    ✅        |  ✅  | ❌
+cos  | Cosine Similarity |     ✅   |    ✅        |  ❌ | ❌
+TC | TanimotoCoefficient | ✅ | ✅ | ❌ | ❌
+dice | Dice Similarity |     ✅   |    ✅        |  ❌ | ❌
+simon | SimonWhite | ✅ | ✅ | ❌ | ❌
+LCST | LongestCommonSubstring | ✅ | ✅ | ✅ | ✅
+LCSQ | LongestCommonSubSequence | ✅ | ✅ | ✅ | ✅
+OC | OverlapCoefficient | ✅ | ✅ | ❌ | ❌
+GOC | GeneralizedOverlapCoefficient | ✅ | ✅ | ❌ | ❌
+jac  | Jaccard     |  ✅ | ✅ | ❌ | ❌
+gjac | GeneralizedJaccard | ✅ | ✅ | ❌ | ❌
+HD | HammingDistance | ✅ | ✅ | ✅ | ❌
+jaro | Jaro | ✅ | ✅ | ❌ | ❌
+JW | JaroWinkler | ✅ | ✅ | ❌ | ❌
+NW | NeedlemanWunch | ✅ | ✅ | ❌ | ✅
+SW | SmithWaterman | ✅ | ✅ | ❌ | ✅
+SWG | SmithWatermanGotoh | ✅ | ✅ | ❌ | ✅
+MK   | MongeElkan  |  ✅ | ✅ | ❌ | ❌
 
 
 # Installation
@@ -38,7 +55,7 @@ pip install smart-match
 
 # Usage
 
-- Default method ED(Levenshtein): It also called edit distance, which is the minimum number of single-character edits (insertions, deletions or substitutions) required to change one word into the other
+- Default method LE(Levenshtein): It is also called edit distance, which is the minimum number of single-character edits (insertions, deletions or substitutions) required to change one word into the other.
 
 ```python
 import smart_match
@@ -54,6 +71,17 @@ Output:
 ```
 
 - change to the other methods:
+
+__ED(EuclideanDistance)__: It calculate the euclidean distance of the two stings.
+
+```python
+smart_match.use('ED')
+print(smart_match.distance('hello', 'hero'))
+```
+Output:
+```shell
+0.34921514788478913
+```
 
 __DL(Damerau Levenshtein)__: It consider the cost of transposition of two adjacent characters to be 1. 
 
@@ -91,7 +119,18 @@ Output:
 0.5669467095138409
 ```
 
-__dice(Dice Similarity)__:  It is intended to be applied to discrete data, so the occurrence of an entry will be ignored. 
+__TC(TanimotoCoefficient)__: Tanimoto coefficient is similar to Cosine similarity, but the occurrence of an entry will be taken into consideration.
+
+```python
+smart_match.use('TC')
+print(smart_match.similarity('test', 'test string1'))
+```
+Output:
+```shell
+0.5773502691896257
+```
+
+__dice(Dice Similarity)__:  The similarity between two strings s1 and s2 is twice the number of character pairs that are common to both strings divided by the sum of the number of character pairs in the two strings. It is intended to be applied to discrete data, so the occurrence of an entry will be ignored. 
 Mathematically
 
 <img src="https://render.githubusercontent.com/render/math?math=dice(X, Y) = \frac{2|X \cap Y|}{|X|%2B|Y|}">
@@ -103,6 +142,17 @@ print(smart_match.similarity('hello', 'hero'))
 Output:
 ```shell
 0.75
+```
+
+__simon(Simon White)__:  The similarity between two strings s1 and s2 is twice the number of character pairs that are common to both strings divided by the sum of the number of character pairs in the two strings. The occurrence of an entry will be taken into consideration.
+
+```python
+smart_match.use('simon')
+print(smart_match.similarity('hello', 'hollow'))
+```
+Output:
+```shell
+0.7272727272727273
 ```
 
 __jac(Jaccard)__: The Jacquard coefficient  is defined as the ratio between the intersection size and the union size of two strings/sets.
@@ -123,7 +173,7 @@ Output:
 1.0
 ```
 
-__gjac(GeneralizedJaccard)__: The Jacquard coefficient  is defined as the ratio between the intersection size and the union size of two strings/sets. Different from Jacquard method, the occurrence of an entry is taken into account.
+__gjac(GeneralizedJaccard)__: The Jacquard coefficient is defined as the ratio between the intersection size and the union size of two strings/sets. Different from Jacquard method, the occurrence of an entry is taken into account.
 
 ```python
 smart_match.use('gjac')
@@ -136,6 +186,53 @@ Output:
 0.8
 0.5
 0.4782608695652174
+```
+
+__OC(OverlapCoefficient)__: The Overlap coefficient is a similarity measure that measures the overlap between two finite strings/sets.
+Mathematically
+
+<img src="https://render.githubusercontent.com/render/math?math=overlap(X, Y) = \frac{|X \cap Y|}{\min(|X|, |Y|)}">
+
+```python
+smart_match.use('gjac')
+print(smart_match.similarity('hello', 'hero'))
+```
+Output:
+```shell
+0.75
+```
+
+__GOC(GeneralizedOverlapCoefficient)__: The Overlap coefficient is a similarity measure that measures the overlap between two finite strings/sets. Different from OverlapCoefficient method, the occurrence of an entry is taken into account.
+
+```python
+smart_match.use('GOC')
+print(smart_match.similarity('hello', 'hollow'))
+```
+Output:
+```shell
+0.8
+```
+
+__LCST(LongestCommonSubstring)__: The longest common substring is a similarity based on finding longest string that is a substring of two strings.
+
+```python
+smart_match.use('LCST')
+print(smart_match.similarity('hello', 'low'))
+```
+Output:
+```shell
+0.4
+```
+
+__LCSQ(LongestCommonSubsequence)__: The longest common subsequence is a similarity based on finding longest subsequence that is a subsequence of two strings.
+
+```python
+smart_match.use('LCSQ')
+print(smart_match.similarity('hello', 'hill'))
+```
+Output:
+```shell
+0.6
 ```
 
 __HD(HammingDistance)__: Hamming distance is the number of different characters in the corresponding positions of two strings. The two strings must be the same length.
@@ -178,6 +275,53 @@ Output:
 0.9066666666666667
 ```
 
+__NW(NeedlemanWunch)__: Applies the NeedlemanWunch algorithm to calculate the similarity between two strings.
+
+```python
+smart_match.use('NW')
+print(smart_match.similarity('test string1', 'test string2'))
+```
+Output:
+```shell
+0.9583333333333334
+```
+
+__SW(SmithWaterman)__: Applies the Smith-Waterman algorithm to calculate the similarity between two strings.
+Mathematically
+
+<img src="https://render.githubusercontent.com/render/math?math=%24score_%7Bi%2C%20j%7D%20%3D%20%5Cmax%20%5Cbegin%7Bcases%7D%0A0%20%5C%5C%0Ascore_%7Bi-1%2C%20j-1%7D%20%2B%20compare(s_i%2C%20t_j)%20%5C%5C%0A%5Cmax_%7B1%20%5Cleq%20k%20%5Cleq%20i%7D(score_%7Bi-k%2C%20j%7D%20%2B%20gap%5E*%20%2B%20(k-1)%20%5Ctimes%20gap)%20%5C%5C%0A%5Cmax_%7B1%20%5Cleq%20k%20%5Cleq%20j%7D(score_%7Bi%2C%20j-k%7D%20%2B%20gap%5E*%20%2B%20(k-1)%20%5Ctimes%20gap)%20%5C%5C%0A%5Cend%7Bcases%7D%24">
+
+in which 
+
+<img src="https://render.githubusercontent.com/render/math?math=%24compare(s_i%2C%20t_j)%20%3D%20%5Cbegin%7Bcases%7D%0Amatch%20%26%20%5Ctext%7Bif%20%7D%20s_i%20%3D%20t_j%20%5C%5C%0Amismatch%20%26%20%5Ctext%7Botherwise%7D%0A%5Cend%7Bcases%7D%24">
+
+```python
+smart_match.use('SW')
+print(smart_match.similarity('Web Aplications', 'Web Application Development With PHP'))
+```
+Output:
+```shell
+0.8666666666666667
+```
+
+__SWG(SmithWatermanGotoh)__: Applies the Smith-Waterman algorithm to calculate the similarity between two strings. This implementation uses optimizations proposed by Osamu Gotoh.
+Mathematically
+
+<img src="https://render.githubusercontent.com/render/math?math=%24score_%7Bi%2C%20j%7D%20%3D%20%5Cmax%20%5Cbegin%7Bcases%7D%0A0%20%5C%5C%0Ascore_%7Bi-1%2C%20j-1%7D%20%2B%20compare(s_i%2C%20t_j)%20%5C%5C%0Ascore_%7Bi-1%2C%20j%7D%20%2B%20gap%20%5C%5C%0Ascore_%7Bi%2C%20j-1%7D%20%2B%20gap%20%5C%5C%0A%5Cend%7Bcases%7D%24">
+
+in which 
+
+<img src="https://render.githubusercontent.com/render/math?math=%24compare(s_i%2C%20t_j)%20%3D%20%5Cbegin%7Bcases%7D%0Amatch%20%26%20%5Ctext%7Bif%20%7D%20s_i%20%3D%20t_j%20%5C%5C%0Amismatch%20%26%20%5Ctext%7Botherwise%7D%0A%5Cend%7Bcases%7D%24">
+
+```python
+smart_match.use('SWG')
+print(smart_match.similarity('GGTTGACTA', 'TGTTACGG'))
+```
+Output:
+```shell
+0.3125
+```
+
 
 __ME(MongeElkan)__: The Monge-Elkan similarity measure is a type of hybrid similarity measure that combines the benefits of sequence-based and set-based methods. It uses the other similarity method as inner method to consider similarity for each string pair in two string collections.
 
@@ -204,3 +348,9 @@ smart-match is a free software. See the file LICENSE for the full text.
 - Kaiwei Li
 - Xiuzi Zhang
 - YuQiang Feng
+- XianFeng Du
+- Zifan Guo
+- JingLin Wu
+- Mingyang Shao
+- Yaxin Li
+- Xueqing Xin

@@ -8,10 +8,10 @@ class CosineSimilarity():
     
     def similarity(self, s, t):
         if not s and not t:
-            return 1
+            return 1.0
         
         if not s or not t:
-            return 0
+            return 0.0
         
         dot_product = 0
         S2 = 0
