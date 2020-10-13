@@ -356,7 +356,7 @@ smart-match is a free software. See the file LICENSE for the full text.
 
 # Authors
 
-![qrcode_for_weichat](https://wx3.sinaimg.cn/mw1024/bdb7558bly1gjo23b3jrmj207607674r.jpg)
+![qrcode_for_wechat_official_account](https://wx3.sinaimg.cn/mw1024/bdb7558bly1gjo23b3jrmj207607674r.jpg)
 
 - Jiaying Wang (jiaying@sjzu.edu.cn)
 - Jing Shan (shanjing@sjzu.edu.cn)
