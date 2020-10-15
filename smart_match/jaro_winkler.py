@@ -7,6 +7,14 @@ class JaroWinkler:
         self.prefix_scale = prefix_scale
         self.max_prefix_length = max_prefix_length
         self.jaro = Jaro()
+        
+    def set_params(self, boost_threshold=None, prefix_scale=None, max_prefix_length=None):
+        if boost_threshold:
+            self.boost_threshold = boost_threshold
+        if prefix_scale:
+            self.prefix_scale = prefix_scale
+        if max_prefix_length:
+            self.max_prefix_length = max_prefix_length
     
     def similarity(self, s, t):
         jaro_similarity = self.jaro.similarity(s, t)
@@ -22,6 +30,9 @@ class JaroWinkler:
             jaro_similarity += self.prefix_scale * prefix * (1 - jaro_similarity)
         
         return jaro_similarity
+    
+    def dissimilarity(self, s, t):
+        return 1 - self.similarity(s, t)
     
     def __repr__(self):
         return f"JaroWinkler [boost_threshold:{self.boost_threshold}, prefix_scale: {self.prefix_scale}, max_prefix_length:{self.max_prefix_length}]"
