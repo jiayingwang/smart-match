@@ -4,7 +4,7 @@ import smart_match
 class TestGeneralizedJaccard(unittest.TestCase):
     
     def setUp(self):
-        smart_match.use('gjac')
+        smart_match.use('Generalized Jaccard')
 
     def test_similarity(self):
         self.assertAlmostEqual(smart_match.similarity('hello', 'helo'), 0.8)

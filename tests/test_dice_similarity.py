@@ -4,7 +4,7 @@ import smart_match
 class TestDiceSimilarity(unittest.TestCase):
     
     def setUp(self):
-        smart_match.use('dice')
+        smart_match.use('Dice')
 
     def test_similarity(self):
         self.assertAlmostEqual(smart_match.similarity('hello', 'hero'), 0.75)

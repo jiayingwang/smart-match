@@ -4,7 +4,7 @@ import smart_match
 class TestLevenshtein(unittest.TestCase):
     
     def setUp(self):
-        smart_match.use('LE')
+        smart_match.use('Levenshtein')
 
     def test_similarity(self):
         self.assertEqual(smart_match.similarity('hello', 'hero'), 0.6)

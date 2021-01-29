@@ -5,7 +5,7 @@ import smart_match
 class TestBlockDistance(unittest.TestCase):
 
     def setUp(self):
-        smart_match.use('BD')
+        smart_match.use('Block Distance')
 
     def test_similarity(self):
         self.assertAlmostEqual(smart_match.similarity('hello', 'hero'), 0.6666666666666667)

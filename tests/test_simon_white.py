@@ -5,7 +5,7 @@ import smart_match
 class TestSimonWhite(unittest.TestCase):
 
     def setUp(self):
-        smart_match.use('simon')
+        smart_match.use('Simon White')
 
     def test_similarity(self):
         self.assertAlmostEqual(smart_match.similarity('abbcccdd', 'aaabccee'), 0.5)

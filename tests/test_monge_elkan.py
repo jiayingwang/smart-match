@@ -4,13 +4,13 @@ import smart_match
 class TestMongeElkan(unittest.TestCase):
     
     def setUp(self):
-        smart_match.use('ME')
+        smart_match.use('Monge Elkan')
 
     def test_similarity(self):
         self.assertAlmostEqual(smart_match.similarity(['Hello', 'world'], ['Hero', 'world']), 0.8)
-        smart_match.set_params(method='cos')
+        smart_match.set_params(method='Cosine')
         self.assertAlmostEqual(smart_match.similarity(['Hello', 'world'], ['Hero', 'world']), 0.7834733547569204)
-        smart_match.set_params(method='EX', level='term')
+        smart_match.set_params(method='Exact', level='term')
         self.assertAlmostEqual(smart_match.similarity('test string1', 'test string2'),  0.5)
         self.assertAlmostEqual(smart_match.similarity('test', 'test string2'),   0.7071067811865476)
         self.assertAlmostEqual(smart_match.similarity('', 'test string2'),   0.0)
@@ -21,7 +21,7 @@ class TestMongeElkan(unittest.TestCase):
 
     def test_dissimilarity(self):
         self.assertAlmostEqual(smart_match.dissimilarity(['Hello', 'world'], ['Hero', 'world']), 0.2)
-        smart_match.set_params(method='cos')
+        smart_match.set_params(method='Cosine')
         self.assertAlmostEqual(smart_match.dissimilarity(['Hello', 'world'], ['Hero', 'world']), 0.21652664524307963)
         
 

@@ -3,7 +3,7 @@ import smart_match
 
 class TestJaroWinkler(unittest.TestCase):
     def setUp(self):
-        smart_match.use('JW')
+        smart_match.use('Jaro Winkler')
         
     def test_similarity(self):
         self.assertAlmostEqual(float('%.4f' %smart_match.similarity('DwAyNE', 'DuANE')), 0.84)

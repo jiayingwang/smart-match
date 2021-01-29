@@ -4,7 +4,7 @@ import smart_match
 class TestJaccard(unittest.TestCase):
     
     def setUp(self):
-        smart_match.use('jac')
+        smart_match.use('Jaccard')
 
     def test_similarity(self):
         self.assertAlmostEqual(smart_match.similarity('hello', 'helo'), 1)

@@ -28,53 +28,79 @@ _verbose = False
 
 def get_method(name=None):
     if not name:
-        name = 'LE'
-    if name == 'LE':
+        name = 'Levenshtein'
+    if name == 'Levenshtein':
         return Levenshtein()
-    if name == 'ED':
+    if name == 'Euclidean':
         return EuclideanDistance()
-    elif name == 'DL':
+    elif name == 'Damerau Levenshtein':
         return DamerauLevenshtein()
-    elif name == "OC":
+    elif name == "Overlap Coefficient":
         return OverlapCoefficient()
-    elif name == "GOC":
+    elif name == "Generalized Overlap Coefficient":
         return GeneralizedOverlapCoefficient()
-    elif name == "LCST":
+    elif name == "Longest Common Substring":
         return LongestCommonSubstring()
-    elif name == "LCSQ":
+    elif name == "Longest Common SubSequence":
         return LongestCommonSubsequence()
-    elif name == 'BD':
+    elif name == 'Block Distance':
         return BlockDistance()
-    elif name == 'cos':
+    elif name == 'Cosine':
         return CosineSimilarity()
-    elif name == 'TC':
+    elif name == 'Tanimoto Coefficient':
         return TanimotoCoefficient()
-    elif name == 'dice':
+    elif name == 'Dice':
         return DiceSimilarity()
-    elif name == 'jac':
+    elif name == 'Jaccard':
         return Jaccard()
-    elif name == 'gjac':
+    elif name == 'Generalized Jaccard':
         return GeneralizedJaccard()
-    elif name == 'HD':
+    elif name == 'Hamming':
         return HammingDistance()
-    elif name == 'jaro':
+    elif name == 'Jaro':
         return Jaro()
-    elif name == 'JW':
+    elif name == 'Jaro Winkler':
         return JaroWinkler()
-    elif name == 'simon':
+    elif name == 'Simon White':
         return SimonWhite()
-    elif name == 'NW':
+    elif name == 'Needleman Wunch':
         return NeedlemanWunch()
-    elif name == 'SW':
+    elif name == 'Smith Waterman':
         return SmithWaterman()
-    elif name == 'SWG':
+    elif name == 'Smith Waterman Gotoh':
         return SmithWatermanGotoh()
-    elif name == 'EX':
+    elif name == 'Exact':
         return Exact()
-    elif name == 'ME':
+    elif name == 'Monge Elkan':
         return MongeElkan()
     else:
         raise NotImplementedError
+        
+def methods():
+  return [
+    'Levenshtein',
+    'Euclidean',
+    'Damerau Levenshtein',
+    'Block Distance',
+    'Cosine',
+    'Tanimoto Coefficient',
+    'Dice',
+    'Simon White',
+    'Longest Common Substring',
+    'Longest Common SubSequence',
+    'Overlap Coefficient',
+    'Generalized Overlap Coefficient',
+    'Jaccard',
+    'Generalized Jaccard',
+    'Hamming',
+    'Jaro',
+    'Jaro Winkler',
+    'Needleman Wunch',
+    'Smith Waterman',
+    'Smith Waterman Gotoh',
+    'Monge Elkan'
+  ]
+  
 
 def set_params(level=None, verbose=False, *args, **kwargs):
     if level:

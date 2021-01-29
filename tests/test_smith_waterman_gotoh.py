@@ -5,7 +5,7 @@ import smart_match
 class TestSmithWatermanGotoh(unittest.TestCase):
 
     def setUp(self):
-        smart_match.use('SWG')
+        smart_match.use('Smith Waterman Gotoh')
 
     def test_similarity(self):
         self.assertAlmostEqual(float('%.4f' % smart_match.similarity("test string1", "test string2")), 0.9167)

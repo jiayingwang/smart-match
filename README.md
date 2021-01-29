@@ -35,30 +35,29 @@ Similarity computation based on q-grams in the strings.
 
 We support the following methods.
 
-Abbreviation | Full name | similarity | dissimilarity | distance | score
--------------|-----------|------------|---------------|----------|------
-LE(Default) | Levenshtein |     ✅   |    ✅        |  ✅  | ❌
-ED  | EuclideanDistance   |     ✅   |    ✅        |  ✅  | ❌
-DL  | Damerau Levenshtein |     ✅   |    ✅        |  ✅  | ❌
-BD  |    Block Distance   |     ✅   |    ✅        |  ✅  | ❌
-cos  | Cosine Similarity |     ✅   |    ✅        |  ❌ | ❌
-TC | TanimotoCoefficient | ✅ | ✅ | ❌ | ❌
-dice | Dice Similarity |     ✅   |    ✅        |  ❌ | ❌
-simon | SimonWhite | ✅ | ✅ | ❌ | ❌
-LCST | LongestCommonSubstring | ✅ | ✅ | ✅ | ✅
-LCSQ | LongestCommonSubSequence | ✅ | ✅ | ✅ | ✅
-OC | OverlapCoefficient | ✅ | ✅ | ❌ | ❌
-GOC | GeneralizedOverlapCoefficient | ✅ | ✅ | ❌ | ❌
-jac  | Jaccard     |  ✅ | ✅ | ❌ | ❌
-gjac | GeneralizedJaccard | ✅ | ✅ | ❌ | ❌
-HD | HammingDistance | ✅ | ✅ | ✅ | ❌
-jaro | Jaro | ✅ | ✅ | ❌ | ❌
-JW | JaroWinkler | ✅ | ✅ | ❌ | ❌
-NW | NeedlemanWunch | ✅ | ✅ | ❌ | ✅
-SW | SmithWaterman | ✅ | ✅ | ❌ | ✅
-SWG | SmithWatermanGotoh | ✅ | ✅ | ❌ | ✅
-MK   | MongeElkan  |  ✅ | ✅ | ❌ | ❌
-
+ Method | similarity | dissimilarity | distance | score
+-----------|------------|---------------|----------|------
+Levenshtein (default) |     ✅   |    ✅        |  ✅  | ❌
+Euclidean |     ✅   |    ✅        |  ✅  | ❌
+Damerau Levenshtein |     ✅   |    ✅        |  ✅  | ❌
+Block Distance   |     ✅   |    ✅        |  ✅  | ❌
+Cosine |   ✅   |    ✅        |  ❌ | ❌
+Tanimoto Coefficient | ✅ | ✅ | ❌ | ❌
+Dice |     ✅   |    ✅        |  ❌ | ❌
+Simon White | ✅ | ✅ | ❌ | ❌
+Longest Common Substring | ✅ | ✅ | ✅ | ✅
+Longest Common SubSequence | ✅ | ✅ | ✅ | ✅
+Overlap Coefficient | ✅ | ✅ | ❌ | ❌
+Generalized Overlap Coefficient | ✅ | ✅ | ❌ | ❌
+Jaccard     |  ✅ | ✅ | ❌ | ❌
+Generalized Jaccard | ✅ | ✅ | ❌ | ❌
+Hamming | ✅ | ✅ | ✅ | ❌
+Jaro | ✅ | ✅ | ❌ | ❌
+Jaro Winkler | ✅ | ✅ | ❌ | ❌
+Needleman Wunch | ✅ | ✅ | ❌ | ✅
+Smith Waterman | ✅ | ✅ | ❌ | ✅
+Smith Waterman Gotoh | ✅ | ✅ | ❌ | ✅
+Monge Elkan  |  ✅ | ✅ | ❌ | ❌
 
 # Installation
 

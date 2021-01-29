@@ -4,7 +4,7 @@ import smart_match
 class TestOverlapCoefficient(unittest.TestCase):
     
     def setUp(self):
-        smart_match.use('OC')
+        smart_match.use('Overlap Coefficient')
 
     def test_similarity(self):
         self.assertEqual(smart_match.similarity('hello', 'hero'), 0.75)

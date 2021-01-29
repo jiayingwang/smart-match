@@ -4,7 +4,7 @@ import smart_match
 
 class TestJaro(unittest.TestCase):
     def setUp(self):
-        smart_match.use('jaro')
+        smart_match.use('Jaro')
 
     def test_jaro_similarity1(self):
 

@@ -3,7 +3,7 @@ import smart_match
 
 class TestHammingDistance(unittest.TestCase):
     def setUp(self):
-        smart_match.use('HD')
+        smart_match.use('Hamming')
     
     def test_distance(self):
         self.assertEqual(smart_match.distance('12211','11111'), 2)

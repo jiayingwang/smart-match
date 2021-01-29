@@ -5,7 +5,7 @@ import smart_match
 class TestNeedlemanWunch(unittest.TestCase):
 
     def setUp(self):
-        smart_match.use('NW')
+        smart_match.use('Needleman Wunch')
 
     def test_similarity(self):
         self.assertAlmostEqual(smart_match.similarity('test string1', 'test string2'), 0.9583333333333334)

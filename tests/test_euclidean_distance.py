@@ -4,7 +4,7 @@ import smart_match
 class TestEuclideanDistance(unittest.TestCase):
     
     def setUp(self):
-        smart_match.use('ED')
+        smart_match.use('Euclidean')
 
     def test_similarity(self):
         smart_match.set_params(level='term')

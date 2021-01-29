@@ -4,7 +4,7 @@ import smart_match
 class TestLongestCommonSubsequence(unittest.TestCase):
     
     def setUp(self):
-        smart_match.use('LCSQ')
+        smart_match.use('Longest Common SubSequence')
 
     def test_similarity(self):
         self.assertEqual(smart_match.similarity('hello', 'hill'), 0.6)

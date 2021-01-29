@@ -3,7 +3,7 @@ import smart_match
 
 class TestTanimotoCoefficient(unittest.TestCase):
     def setUp(self):
-        smart_match.use('TC')
+        smart_match.use('Tanimoto Coefficient')
         
     def test_similarity(self):
         self.assertAlmostEqual(float('%.4f' % smart_match.similarity('test', 'test string1')), .5774)

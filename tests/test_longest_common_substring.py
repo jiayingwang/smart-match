@@ -4,7 +4,7 @@ import smart_match
 class TestLongestCommonSubstring(unittest.TestCase):
     
     def setUp(self):
-        smart_match.use('LCST')
+        smart_match.use('Longest Common Substring')
 
     def test_similarity(self):
         self.assertEqual(smart_match.similarity('hello', 'low'), 0.4)

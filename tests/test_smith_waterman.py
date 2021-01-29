@@ -4,7 +4,7 @@ import smart_match
 class TestSmithWaterman(unittest.TestCase):
     
     def setUp(self):
-        smart_match.use('SW')
+        smart_match.use('Smith Waterman')
 
     def test_similarity(self):
         self.assertAlmostEqual(smart_match.similarity('Web Aplications', 'Web Application Development With PHP'), 0.8666666666666667)
