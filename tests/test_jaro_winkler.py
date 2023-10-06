@@ -8,7 +8,7 @@ class TestJaroWinkler(unittest.TestCase):
     def test_similarity(self):
         self.assertAlmostEqual(float('%.4f' %smart_match.similarity('DwAyNE', 'DuANE')), 0.84)
         self.assertAlmostEqual(float('%.4f' %smart_match.similarity('TRATE', 'TRACE')), 0.9067)
-        self.assertAlmostEqual(float('%.4f' %smart_match.similarity("test string1", "test string2")),0.9667)#0.9484848484848484
+        self.assertAlmostEqual(float('%.4f' %smart_match.similarity("test string1", "test string2")),0.9667)
         self.assertAlmostEqual(float('%.4f' %smart_match.similarity("", "test string2")),0.0000)
         self.assertAlmostEqual(float('%.4f' %smart_match.similarity("aaa bbb ccc ddd", "aaa bbb ccc eee")),0.9200)
         self.assertAlmostEqual(float('%.4f' %smart_match.similarity("a b c d", "a b c e")),0.9429)
@@ -18,7 +18,7 @@ class TestJaroWinkler(unittest.TestCase):
         self.assertAlmostEqual(float('%.4f' %smart_match.similarity( "Healed", "Help")),.8000)
         self.assertAlmostEqual(float('%.4f' %smart_match.similarity("Healed", "Sold")),0.6111)
         self.assertAlmostEqual(float('%.4f' %smart_match.similarity( "Healed", "Help")),0.8000)
-        self.assertAlmostEqual(float('%.4f' %smart_match.similarity("Sam Chapman", "S Chapman")),0.8288) #0.8455
+        self.assertAlmostEqual(float('%.4f' %smart_match.similarity("Sam Chapman", "S Chapman")),0.8288)
         self.assertAlmostEqual(float('%.4f' % smart_match.similarity("John Smith", "Samuel John Chapman")),0.5945)
         self.assertAlmostEqual(float('%.4f' %smart_match.similarity("John Smith", "Sam Chapman")),0.4131)
         self.assertAlmostEqual(float('%.4f' %smart_match.similarity("John Smith", "Sam J Chapman")),0.4949)
